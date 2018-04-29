@@ -1,0 +1,22 @@
+.filterYear-contents{
+	position:relative;
+	float:left;
+	display:inline;
+	vertical-align: middle
+}
+.filterYear-input{
+	width:6em;
+	margin-top:.25em;
+	padding-top:.5em;
+	padding-bottom:.25em;
+	text-align:center;
+	font-family: MoonLight;
+	border-radius: 0px 5px 5px 0px;
+	border-width: thin;
+	border-color: grey;
+	letter-spacing: .1em;
+
+}
+.filterYear-input:focus{
+	outline:none;
+}

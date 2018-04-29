@@ -1,0 +1,143 @@
+.journalEntry-container{
+	width:100%;
+	position:relative;
+	float:left;
+	padding-top:2em;
+	z-index:500;
+	background: rgb(250, 250, 250);
+	min-height:520px;
+}
+.journalEntry-wrapper{
+
+}
+.journalEntry-content{
+	width:90%;
+	margin:5%;
+	position:relative;
+	cursor: pointer;
+	float:left;
+	background: white;
+		box-shadow: 0 4px 20px -2px gray;
+	   -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+}
+.journalEntry-content-container{
+	width:100%;
+	position:relative;
+	float:left;
+
+}
+.journalEntry-date{
+	float:left;
+	width:100%;
+	font-size:12pt;
+	text-align: center;
+	font-family:MoonLight;
+	color:grey;
+}
+
+.journalEntry-text{
+	width:60%;
+	padding-top:1em;
+	margin: 0 auto;
+	font-family: Typewriter;
+}
+.journalEntry-text p{
+	vertical-align: middle;
+}
+.journal-highlighted-container{
+	position:fixed;
+	 top: 0;
+  	left: 0;
+	width:100%;
+	height: 100%;
+	padding-top:5%;
+	padding-bottom:5%;
+	z-index:10000;
+	background: rgba(0, 0, 0, 0.5);
+}
+.journal-highlighted-wrapper{
+	margin: 0 auto;
+	width: 60%;
+}
+.journal-highlighted{
+	background:white;
+	height:600px;
+	box-sizing: border-box;
+	outline: none;
+	box-shadow: 0 4px 20px -2px gray;
+	   -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-appearance: none;
+    border-radius: 0px 5px 5px 5px;
+    padding:50px;
+    font-family: Typewriter;
+    overflow-y: scroll;
+}
+.btn-delete-popup, .btn-edit-entry{
+	width:5em;
+	height:2em;
+	border-radius:5px 5px 0px 0px;
+	border-width: thin;
+	font-family: ''; 
+}
+
+
+.journal-appear {
+  opacity: 0.01;
+  transform: translateX(-10%);
+}
+.journal-appear-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all .75s ease-in;
+}
+
+.left-column, .middle-column, .right-column{
+	position:relative;
+	float:left;
+	width:30%;
+}
+.left-column{
+	margin-left:5%;
+}
+.right-column{
+	margin-right:5%;
+}
+
+.deletePopup-container{
+	position:fixed;
+	top:30%;
+	left:40%;
+	width:20%;
+	height:6em;
+	z-index: 10000000;
+	background-color:grey;
+	border-radius:5px;
+}
+.deletePopup-wrapper{
+	position:relative;
+	float:left;
+
+}
+.deletePopup-content{
+	margin: 0 auto;
+	align-content: middle;
+	text-align: center;
+	color:white;
+	font-size: 10pt;
+	font-family: Courier New;
+}
+.delete-btns{
+	margin:0 auto;
+	text-align: center;
+}
+.deletePopup-yes, .deletePopup-no{
+	width:4em;
+	height:2em;
+	align-content: center;
+	text-align: center;
+
+}

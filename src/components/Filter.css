@@ -1,0 +1,15 @@
+.filter-container{
+	width:100%;
+	position:absolute;
+	left:0%;
+	top:24%;
+	z-index:10000;
+}
+.filter-wrapper{
+	width:30%;
+	margin:0 auto;
+}
+
+.month-suggestions{
+
+}

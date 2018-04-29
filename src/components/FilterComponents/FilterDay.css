@@ -1,0 +1,21 @@
+.filterDay-contents{
+	position:relative;
+	float:left;
+	display:inline;
+	vertical-align: middle
+}
+.filterDay-input{
+	width:5em;
+	margin-top:.25em;
+	padding-top:.5em;
+	padding-bottom:.25em;
+	text-align:center;
+	font-family: MoonLight;
+	border-radius: 5px 0px 0px 5px;
+	border-width: thin;
+	border-color: grey;
+
+}
+.filterDay-input:focus{
+	outline:none;
+}

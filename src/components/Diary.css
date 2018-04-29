@@ -1,0 +1,44 @@
+
+.diary-appear {
+  opacity: 0.01;
+  transform: translateY(10%);
+}
+.diary-appear-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 500ms ease-in;
+}
+
+
+.middle-container{
+width:100%;
+float:left;
+position:relative;
+/*background: url('../pic/wood-backdrop.jpg') repeat center fixed;*/
+background: white no-repeat center fixed;
+z-index:500;
+padding-top: 6%;
+padding-bottom: 20px;
+background: rgb(250,250,250);
+}
+.diaryField{
+	display:block;
+  background: white;
+	margin: 0 auto;
+	box-sizing: border-box;
+	min-height:800px;
+	width:60%;
+	outline: none;
+	box-shadow: 0 4px 20px -2px gray;
+	   -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    padding:50px;
+    font-family: Typewriter;
+}
+
+/*@font-face {
+    font-family: Typewriter;
+    src: url(../fonts/Tox_Typewriter.ttf);
+}*/
