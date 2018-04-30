@@ -15,7 +15,6 @@ router.post(process.env.URL_LOGIN, function(req, res) {
 	    console.log('request body not found');
 	    return res.sendStatus(400);
   }
-  User.find()
 
 	const user = {id:1, firstName: "Jimmy", lastName:"Muller"};
 	const token = jwt.sign( user , process.env.SECRET_KEY);
