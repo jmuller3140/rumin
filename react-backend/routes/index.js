@@ -7,10 +7,11 @@ var mongoose = require('mongoose');
 require('dotenv/config');
 
 const Entry = require('../models/entry');
+const checkAuth = require('../middleware/check-auth');
 
 
 /* GET home page. */
-router.get(process.env.URL_HOME, function(req, res, next) {
+router.get(process.env.URL_HOME, checkAuth, (req, res, next) => {
 
     getDate = (dateString) => {
        const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -28,10 +29,10 @@ router.get(process.env.URL_HOME, function(req, res, next) {
   
    // Entry.remove({}).exec();
    // console.log("success in deletion");
-  Entry.find()
+  Entry.find({userId: req.userData.userId})
   .exec()
   .then(entries => {
-        // console.log(entries);
+        console.log(entries);
         const data = [];
         for(var i=0; i< entries.length; i++){
           const timestamp = moment(entries[i].date).format('YYYY/MM/DD hh:mm:ss SSS');

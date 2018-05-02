@@ -1,0 +1,51 @@
+.registerForm ul{
+	text-align: center;
+}
+.registerForm li{
+margin:1em;
+display:inline;
+text-decoration:none;
+color:grey;
+font-size:1em;
+letter-spacing:.1em;
+text-align: center;
+}
+.registerForm label{
+	margin-right:10%;
+}
+.registerForm input{
+	padding:.5em;
+	display:block;
+	border-radius: 5px;
+	border-width: thin;
+	letter-spacing:.1em;
+	font-family: "MoonLight";
+}
+.register-container{
+width:100%;
+position:relative;
+float:left;
+/*background-color:rgba(255, 255, 255, .5);*/
+}
+.register-content-wrapper{
+/*float:left;*/
+width:100%;
+padding-top:10%;
+z-index:500;
+background: url('../pic/login_1600.png') no-repeat center fixed;
+height:605px;
+background-size:cover;
+float:left;
+}
+.register-form-container{
+width:20%;
+margin:0 auto;
+position:relative;
+padding:1em;
+background:rgba(255, 255, 255, 0.8);
+border-radius: 5px;
+}
+
+.registerForm{
+
+}

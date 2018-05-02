@@ -10,8 +10,7 @@ import './index.css';
 
 const authenticate = () => {
   const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');
-  if (!token || !refreshToken) {
+  if (!token ) {
     return false;
   }
   //   try {
@@ -26,7 +25,7 @@ const authenticate = () => {
   //   return false;
   // }
   return true;
-}
+};
 
 
 const buildRoutes = () => {

@@ -25,6 +25,9 @@ export default class HeaderEntry extends React.Component{
 							<ul className='userName'>
 								<li>{this.state.firstName} {this.state.lastName}</li>
 							</ul>
+							<ul className='logout'>
+								<li><Link className='link' to='/' onClick={this.props.logout}>Logout</Link></li>
+							</ul>
 							<ul className='title'>
 								<li>{this.props.pageName}</li>
 							</ul>

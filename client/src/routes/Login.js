@@ -1,5 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
+import request from 'superagent';
 
 import LoginComponent from '../components/LoginComponent';
 import Header from '../components/Header';
@@ -21,32 +22,32 @@ import Header from '../components/Header';
 	    })
 	  }
 
-	  handleSubmit = (e) =>{
+	  handleSubmit = (e) => {
 	       const { email, password } = this.state;
+	       const data = { email: email, password: password };
 	    e.preventDefault();
-	    fetch('http://localhost:3001/login', {
-	     method: 'post',
-	     headers: {'Content-Type':'application/json',
-	                'Accept': 'application/json'},
-	     body: {
-	      email: email,
-	      password: password
-	     }
-	    })
-	    .then(res => res.json())
-	    .then(data => {
-	      console.log(data);
-	      const { token, refreshToken } = data[0];
+	    request
+	    .post('http://localhost:3001/login')
+	    .set('Content-Type','application/json')
+	    .set('Accept', 'application/json')
+	    .send( data )
+	    .end((err, res) => {
+	    if(err){
+	    		console.log(err);
+	    } else {
+	      console.log(res.status);
+	      const { token } = res.body;
 	      const decodedToken = jwtDecode(token);
 	      console.log(decodedToken);
 	      const { firstName, lastName } = decodedToken;
 	       localStorage.setItem('token', token);
-	       localStorage.setItem('refreshToken', refreshToken);
 	       localStorage.setItem('firstName', firstName);
 	       localStorage.setItem('lastName', lastName);
 
 	       window.location.reload();
-	  });
+	    }
+	    });
+
 }
 
   

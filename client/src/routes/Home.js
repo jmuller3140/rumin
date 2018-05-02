@@ -136,7 +136,6 @@ export default class Home extends React.Component {
 	}
 
 	deleteEntry(id, e){
-		const refreshToken = localStorage.getItem('refreshToken');
 
 		const data = {id: id};
 		console.log(data);
@@ -147,6 +146,7 @@ export default class Home extends React.Component {
 		.post('http://localhost:3001/')
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
+		.set('authorization', 'bearer ' + localStorage.getItem('token'))
 		.send( data )
 		.end(function(err, res){
 			that.setState({visible: false});
@@ -163,7 +163,8 @@ export default class Home extends React.Component {
 	    fetch('http://localhost:3001/', {
 	     method: 'get',
 	     headers: {'Content-Type':'application/json',
-	                'Accept': 'application/json'},
+	                'Accept': 'application/json',
+	            	'authorization': 'bearer ' + localStorage.getItem('token')},
 	     body: {
 	      refreshToken: refreshToken
 	     }

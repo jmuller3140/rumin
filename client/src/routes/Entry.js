@@ -33,6 +33,7 @@ export default class Entry extends React.Component{
 		.post('http://localhost:3001/save')
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
+		.set('authorization', 'bearer ' + localStorage.getItem('token'))
 		.send( {data: data} )
 		.end(function(err, res){
 			const clearedEditorState = EditorState.push(editorState, ContentState.createFromText(''));

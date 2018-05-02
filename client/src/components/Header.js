@@ -16,20 +16,30 @@ export default class Header extends React.Component {
 			firstName: "",
 			lastName: ""
 		};
+		this.onClickLogoutHandler = this.onClickLogoutHandler.bind(this);
+	}
+
+	onClickLogoutHandler(e){
+		localStorage.clear();
+		window.location.reload();
 	}
 
 	componentDidMount(){
 	if(this.state.pageName === "Login"){
+		let props = { pageName: 'R u m i n' };
 		this.setState({htmlInjection: <HeaderLogin pageName='R u m i n'/> });
 	}
 	else if(this.state.pageName === "Entry"){
-			this.setState({htmlInjection:  <HeaderEntry pageName='Entry' save={this.props.save}/> });		
+			let props = { save: this.props.save, logout: this.onClickLogoutHandler, pageName: 'Entry' };
+			this.setState({htmlInjection:  <HeaderEntry  {...props } /> });		
 	}
 	else if(this.state.pageName === "Register"){
-		this.setState({htmlInjection: <div><p>{this.state.pageName}</p></div>});
+		let props = { pageName: 'R u m i n' };
+		this.setState({htmlInjection: <HeaderLogin pageName='R u m i n'/>});
 	}
 	else if(this.state.pageName === "Home"){
-		this.setState({htmlInjection: <HeaderHome pageName='Home'/>}
+		let props = { logout: this.onClickLogoutHandler, pageName: 'Home' };
+		this.setState({htmlInjection: <HeaderHome {...props} />}
 		);
 	}
 }

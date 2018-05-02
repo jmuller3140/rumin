@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 
 const Entry = require('../models/entry');
+const checkAuth = require('../middleware/check-auth');
 
 
 require('dotenv/config');
@@ -17,15 +18,17 @@ var jsonParser = bodyParser.json()
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
-router.post(process.env.URL_SAVE, function(req, res){
-	//Entry.remove({}).exec();
+router.post(process.env.URL_SAVE, checkAuth, (req, res, next) => {
+
 	if(!req.body || req.body.length === 0) {
 	    console.log('request body not found');
 	    return res.sendStatus(400);
   }
 
+
   const entry = new Entry({
   	_id: mongoose.Types.ObjectId(),
+    userId: req.userData.userId,
   	date: moment(),
   	entry: req.body.data
   });
