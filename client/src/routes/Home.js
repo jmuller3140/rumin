@@ -106,7 +106,7 @@ export default class Home extends React.Component {
 		let filterArray = [];
 		for(var i = 0; i<len; i++){
 			let yearIndex = entries[i].dateTime.indexOf('/');
-			let year = entries[i].dateTime.slice(0, yearIndex);
+			let year = parseInt(entries[i].dateTime.slice(0, yearIndex));
 
 			let monthIndex = entries[i].dateTime.indexOf('/', yearIndex + 1);
 			let month = parseInt(entries[i].dateTime.slice(yearIndex + 1, monthIndex));
@@ -114,8 +114,8 @@ export default class Home extends React.Component {
         july: 7, august:8, september:9, october:10, november:11, december: 12};
         	let monthValue = monthNames[monthFilter];
 
-			let dayIndex = entries[i].dateTime.indexOf(' ', monthIndex + 1)
-			let day = entries[i].dateTime.slice(monthIndex + 1, dayIndex);
+			let dayIndex = entries[i].dateTime.indexOf(' ', monthIndex + 1);
+			let day = parseInt(entries[i].dateTime.slice(monthIndex + 1, dayIndex));
 
 
 			if(year < yearFilter){
