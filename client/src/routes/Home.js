@@ -34,21 +34,28 @@ export default class Home extends React.Component {
 					highlightedEditorState: EditorState.createEmpty(), highlightedId: "", visible: false };
 
 	}
+	//////////////////////////////////////////
+	/*handler for changing values of inputs*/
+	//////////////////////////////////////////
 	onChange = (e) => {
 	    this.setState({
 	     [e.target.id] : e.target.value
 	    });
 	  }
-
+	///////////////////////////////////////////////////
+	/*handler for changing value of the month input*/
+	//////////////////////////////////////////////////
 	 onChangeMonthHandler = (event, { newValue }) => {
 		    this.setState({
 		      onChangeMonth: newValue
 		    });
 		  };
+	//////////////////////////////////////////
+	/*handler for changing values of month suggestions based on typing*/
+	//////////////////////////////////////////
 	 getSuggestions = value => {
 		  const inputValue = value.trim().toLowerCase();
 		  const inputLength = inputValue.length;
-		  console.log('hit');
 
 		  return inputLength === 0 ? [] : this.months.filter(month =>
 		    month.name.toLowerCase().slice(0, inputLength) === inputValue
@@ -62,7 +69,7 @@ export default class Home extends React.Component {
 
 // Use your imagination to render suggestions.
         renderSuggestion = suggestion => (
-						  <div className='month-suggestions'>
+						  <div>
 						    {suggestion.name}
 						  </div>
 						);

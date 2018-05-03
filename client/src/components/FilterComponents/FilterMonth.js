@@ -30,7 +30,31 @@ export default class FilterMonth extends React.Component{
     	},
     	inputFocused: {
     		outline: 'none'
-    	}
+    	},
+      suggestionsList: {
+      	listStyleType: 'none',
+      	fontFamily: 'moonBold',
+      	width:'100%',
+        margin: '0'
+      },
+      suggestion:{
+      	width: '95%',
+        background: 'white',
+      	textAlign: 'center',
+        borderRadius: '5px',
+      	border: '1px solid grey',
+      	padding: '5px',
+        marginLeft:'-2.5em',
+        color: 'black'
+      },
+      suggestionsContainerOpen:{
+      	width:'100%'
+      },
+      suggestionFirst:{
+        borderTopRightRadius: '0px',
+        borderTopLeftRadius: '0px'
+
+      }
     }
 
     // Autosuggest will pass through all these props to the input.
