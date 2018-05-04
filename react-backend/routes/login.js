@@ -41,7 +41,7 @@ router.post(process.env.URL_LOGIN, (req, res, next) => {
   									}, 
   									process.env.SECRET_KEY,
   									{
-  										expiresIn:'1hr'
+  										expiresIn:'2hr'
   									});
 
   				return res.status(200).json({

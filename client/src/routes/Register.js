@@ -17,13 +17,17 @@ import Header from '../components/Header';
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+/////////////////////////////////////
+/* onChange to change input values */
+/////////////////////////////////////
     onChange = (e) => {
       this.setState({
         [e.target.name]: e.target.value
       })
     }
-
+////////////////////////////////////
+/* event handler for registration */
+////////////////////////////////////
     handleSubmit = (e) =>{
          const { email, password, firstName, lastName } = this.state;
          const data = {email: email, password: password, firstName: firstName, lastName: lastName};

@@ -16,11 +16,15 @@ export default class JournalDisplay extends React.Component{
 		this.onClickDeletePopup = this.onClickDeletePopup;
 		this.changeDeleteState = this.changeDeleteState;
 	}
-
+///////////////////////////////////////////////
+/* shows and hides confirmation entry delete */
+///////////////////////////////////////////////
 	changeDeleteState(e){
 		this.setState({deletePopup: !this.state.deletePopup});
 	}
-
+/////////////////////////////////////////////////////
+/* sorts entries and disperses them into 3 columns */
+/////////////////////////////////////////////////////
 	sort(unSorted){
 		 if(unSorted.length >= 1 && unSorted[0].id !== 1){
 		let firstColumn = [], secondColumn = [], thirdColumn = [];

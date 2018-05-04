@@ -29,6 +29,28 @@ const authenticate = () => {
 
   return true;
 };
+///////////////////////////////////////////////////////////
+/* authRoutes returns the routes dynamically generated */
+///////////////////////////////////////////////////////////
+const homeComponent = () => {
+  let props = {pageName: 'Home', authenticate: authenticate};
+  return (<Home {...props} />)
+}
+
+const entryComponent = () => {
+  let props = {pageName: 'Entry', authenticate: authenticate};
+  return (<Entry {...props} />)
+}
+
+const loginComponent = () => {
+  let props = {pageName: 'Login'};
+  return (<Login {...props} />)
+}
+
+const registerComponent = () => {
+  let props = {pageName: 'Register'};
+  return (<Register {...props} />)
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /* build routes that will get rendered conditionally based on if the user is authenticated or not */
@@ -39,8 +61,8 @@ const buildRoutes = () => {
 		{
 			  return (
               <Switch>
-                <Route exact path="/" props={{pageName: Home}} component={Home} />
-                <Route exact path="/entry" props={{pageName: Entry}} component={Entry} />
+                <Route exact path="/" render={homeComponent} />
+                <Route exact path="/entry" render={entryComponent} />
               </Switch>
 				);
 		}	
@@ -48,8 +70,9 @@ const buildRoutes = () => {
     {
 			  return (
               <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/register" component={Register} />
+                <Route exact path="/" render={loginComponent} />
+                <Redirect from="/entry" to="/" />
+                <Route exact path="/register" render={registerComponent} />
               </Switch>
       );
   }

@@ -2,14 +2,15 @@ import React from 'react';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
 import request from 'superagent';
+import {Redirect} from 'react-router-dom';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
 import JournalDisplay from '../components/JournalDisplay';
 import Filter from '../components/Filter';
 export default class Home extends React.Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		// Variables for the filtering boxes
 		this.onChange = this.onChange.bind(this);
 		this.onChangeMonthHandler = this.onChangeMonthHandler.bind(this);
@@ -90,15 +91,18 @@ export default class Home extends React.Component {
 		    });
 		  };		
 
-
-		  ////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/* onClickHandler to highlight full entry text */
+/////////////////////////////////////////////////
 	onClickHandler(editorState, id, e){
 		this.setState({visible: true});
 		this.setState({highlightedEditorState: editorState});
 		this.setState({highlightedId: id});
 		console.log(this.state.highlightedId);
 	}
-
+///////////////////////////////////
+/* gets rid of popup entery text */
+///////////////////////////////////
 	onClickHighlighted(action, e){
 		if(action){
 			this.setState({visible: false});
@@ -107,7 +111,9 @@ export default class Home extends React.Component {
 			e.stopPropagation();
 		}
 	}
-
+/////////////////////////////////////////////////////////////////////
+/* filter function that adds entries to display before filter date */
+/////////////////////////////////////////////////////////////////////
 	filter(dayFilter, monthFilter, yearFilter, entries){
 		let len = entries.length;
 		let filterArray = [];
@@ -142,6 +148,9 @@ export default class Home extends React.Component {
 		return filterArray;
 	}
 
+	///////////////////
+	/* deletes entry */
+	///////////////////
 	deleteEntry(id, e){
 
 		const data = {id: id};
@@ -164,7 +173,9 @@ export default class Home extends React.Component {
 	}
 
 
-
+/////////////////////////////////////////////////////////
+/* calls post request to retrieve user journal entries */
+/////////////////////////////////////////////////////////
 	componentDidMount(){
 		const refreshToken = localStorage.getItem('refreshToken');
 	    fetch('http://localhost:3001/', {
@@ -195,41 +206,47 @@ export default class Home extends React.Component {
 
 	})
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	render(){
+		const isAuth = this.props.authenticate();
+		if(isAuth)
+		{
+			const propsFilter = {onChange: this.onChange, 
+			 					  onChangeMonthHandler:this.onChangeMonthHandler, 
+			 					  months: this.state.months,
+			 					  onChangeMonth: this.state.onChangeMonth, 
+			 					  onChangeDay: this.state.onChangeDay,
+			 					  onChangeYear: this.state.onChangeYear,
+			 					 getSuggestions: this.getSuggestions,
+								 getSuggestionValue: this.getSuggestionValue,
+								 renderSuggestion: this.renderSuggestion,
+								 onSuggestionsClearRequested: this.onSuggestionsClearRequested,
+								 onSuggestionsFetchRequested: this.onSuggestionsFetchRequested, 
+								 currentDate: this.currentDate };
 
-		 const propsFilter = {onChange: this.onChange, 
-		 					  onChangeMonthHandler:this.onChangeMonthHandler, 
-		 					  months: this.state.months,
-		 					  onChangeMonth: this.state.onChangeMonth, 
-		 					  onChangeDay: this.state.onChangeDay,
-		 					  onChangeYear: this.state.onChangeYear,
-		 					 getSuggestions: this.getSuggestions,
-							 getSuggestionValue: this.getSuggestionValue,
-							 renderSuggestion: this.renderSuggestion,
-							 onSuggestionsClearRequested: this.onSuggestionsClearRequested,
-							 onSuggestionsFetchRequested: this.onSuggestionsFetchRequested, 
-							 currentDate: this.currentDate };
+			const {onChangeDay, onChangeMonth, onChangeYear} = this.state;
+			const filteredArray = this.filter(onChangeDay, onChangeMonth, onChangeYear, this.state.entries);
 
-		const {onChangeDay, onChangeMonth, onChangeYear} = this.state;
-		const filteredArray = this.filter(onChangeDay, onChangeMonth, onChangeYear, this.state.entries);
-
-		const propsJournal = {entries: filteredArray, 
-							visible: this.state.visible, 
-							onClickHighlighted: this.onClickHighlighted, 
-							onClickHandler: this.onClickHandler, 
-							highlightedEditorState: this.state.highlightedEditorState, 
-							highlightedId:this.state.highlightedId,
-							deleteEntry: this.deleteEntry
-						};
-		return  (
-		<div>
-			<Header pageName='Home' />
-			<ProfileImage/>
-			<Filter {...propsFilter} />
-			<JournalDisplay {...propsJournal} />
-		</div>
-		)
+			const propsJournal = {entries: filteredArray, 
+								visible: this.state.visible, 
+								onClickHighlighted: this.onClickHighlighted, 
+								onClickHandler: this.onClickHandler, 
+								highlightedEditorState: this.state.highlightedEditorState, 
+								highlightedId:this.state.highlightedId,
+								deleteEntry: this.deleteEntry
+							};
+			return  (
+			<div>
+				<Header pageName='Home' />
+				<ProfileImage/>
+				<Filter {...propsFilter} />
+				<JournalDisplay {...propsJournal} />
+			</div>
+			)
+		}
+		else {
+			window.location.reload();
+		}
 	}
 };
 

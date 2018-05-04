@@ -15,13 +15,17 @@ import Header from '../components/Header';
  		this.onChange = this.onChange;
  		this.handleSubmit = this.handleSubmit;
  	}
-
+///////////////////////////////////////////
+/* onChange event handler to change text */
+///////////////////////////////////////////
 	  onChange = (e) => {
 	    this.setState({
 	      [e.target.name]: e.target.value
 	    })
 	  }
-
+////////////////////////////////////
+/* loginHandler to log someone in */
+////////////////////////////////////
 	  handleSubmit = (e) => {
 	       const { email, password } = this.state;
 	       const data = { email: email, password: password };

@@ -13,15 +13,17 @@ export default class Entry extends React.Component{
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.saveEventHandler = this.saveEventHandler.bind(this);
 	}
-
+//////////////////////////////////////////////////////
+/* event handler that updates the editor state text */
+//////////////////////////////////////////////////////
 	entryEventHandler = (editorState) => {
 		console.log(this.state.editorState);
 		this.setState({editorState});
 	}
-
+//////////////////////////////////////////////////////
+/* save handler that saves entry to db */
+//////////////////////////////////////////////////////
 	saveEventHandler(e){
-		// console.log("hit the save button");
-
 		const { editorState } = this.state;
 		const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
 		// const adata = convertToRaw(convertFromRaw(data));
@@ -43,13 +45,18 @@ export default class Entry extends React.Component{
 	  }
 
 	render(){
-		return (
-		<div>
-			<Header pageName='Entry' save={this.saveEventHandler}/>
-			<ProfileImage />
-			<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
-		</div>
-		)
+		const isAuth = this.props.authenticate();
+		if(isAuth)
+		{
+			return (
+			<div>
+				<Header pageName='Entry' save={this.saveEventHandler}/>
+				<ProfileImage />
+				<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
+			</div>
+			)
+		} else {
+			window.location.reload();
+		}
 	}
 };
-			 // <ProfileImage />
