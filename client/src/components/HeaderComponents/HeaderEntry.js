@@ -20,31 +20,31 @@ export default class HeaderEntry extends React.Component{
 		return (
 			<header>
 				<div className="navbar-container">
-					<div className="navbar-content-wrapper">
-						<div className="navbar-content">
 							<ul className='userName'>
 								<li>{this.state.firstName} {this.state.lastName}</li>
 							</ul>
 							<ul className='logout'>
 								<li><Link className='link' to='/' onClick={this.props.logout}>Logout</Link></li>
 							</ul>
-							<ul className='title'>
+							<ul className='title-entry'>
 								<li>{this.props.pageName}</li>
+							</ul>
+							<ul className='toolbar'>
+								<li><FontAwesomeIcon className='save' icon={faSave} onClick={this.props.save}/></li>
 							</ul>
 							<ul className='navigation'>
 								<li><Link  className='link' to='/'>Home</Link></li>
 								<li><Link  className='link' to='Entry'>Entry</Link></li> 
 							</ul>
-							<ul className='toolbar'>
-								<li><FontAwesomeIcon className='save' icon={faSave} onClick={this.props.save}/></li>
-							</ul>
-						</div>
-					</div>
 				</div>
 			</header>			
 		);
 	}
 }
+
+//					<div className="navbar-content-wrapper">
+
+
 
 //								<li><FontAwesomeIcon className='arrow-up' icon={faArrowUp} onClick={this.props.save}/></li>
 	// constructor(props){

@@ -15,17 +15,13 @@ export default class HeaderLogin extends React.Component{
 		return (
 			<header>
 				<div className="navbar-container">
-					<div className="navbar-content-wrapper">
-						<div className="navbar-content">
-							<ul className='loginTitle'>
+							<ul className='title'>
 								<li>{this.state.pageName}</li>
 							</ul>
 							<ul className='navigation'>
 								<li><Link className='link' to='/'>Login</Link></li>
 								<li><Link  className='link' to='Register'>Registration</Link></li> 
 							</ul>
-						</div>
-					</div>
 				</div>
 			</header>
 			);

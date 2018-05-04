@@ -1,7 +1,7 @@
 .filterYear-contents{
 	position:relative;
 	float:left;
-	display:inline;
+	display:inline-flex;
 	vertical-align: middle
 }
 .filterYear-input{

@@ -17,8 +17,6 @@ export default class HeaderHome extends React.Component{
 		return (
 			<header>
 				<div className="navbar-container">
-					<div className="navbar-content-wrapper">
-						<div className="navbar-content">
 							<ul className='userName'>
 								<li>{this.state.firstName} {this.state.lastName}</li>
 							</ul>
@@ -28,15 +26,12 @@ export default class HeaderHome extends React.Component{
 							<ul className='title'>
 								<li>{this.state.pageName}</li>
 							</ul>
+							<ul className='toolbar'>
+							</ul>
 							<ul className='navigation'>
 								<li><Link className='link' to='/'>Home</Link></li>
 								<li><Link  className='link' to='Entry'>Entry</Link></li> 
 							</ul>
-							<ul className='toolbar'>
-
-							</ul>
-						</div>
-					</div>
 				</div>
 			</header>			
 		);
