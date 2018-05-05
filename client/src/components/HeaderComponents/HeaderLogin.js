@@ -15,7 +15,7 @@ export default class HeaderLogin extends React.Component{
 		return (
 			<header>
 				<div className="navbar-container">
-							<ul className='title'>
+							<ul className='title-login'>
 								<li>{this.state.pageName}</li>
 							</ul>
 							<ul className='navigation'>

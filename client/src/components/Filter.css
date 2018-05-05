@@ -1,7 +1,7 @@
 .filter-container{
 	width:100%;
 	position:absolute;
-	left:0%;
+	left:1%;
 	top:24%;
 	z-index:10000;
 }
@@ -31,6 +31,14 @@
 		width:50%;
 		margin:0 auto;
 	}
+	.filter-container{
+	width:100%;
+	position:absolute;
+	left:3%;
+	top:24%;
+	z-index:10000;
+}
+
 }
 /*@media (max-width: 855px){
 	.filter-wrapper{

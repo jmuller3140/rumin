@@ -1,5 +1,6 @@
 .navbar-container{
 width:100%;
+height:3em;
 position:fixed;
 display: inline-flex;
 flex-direction: row;
@@ -13,28 +14,34 @@ z-index:2000;
 box-shadow: 0 4px 2px -2px gray;
 }
 
-.title, .title-entry, .navigation, .toolbar, .userName{
+.title, .title-entry, .navigation, .toolbar, .userName, .title-login{
 	display: inline-flex;
 }
 
-.title, .title-entry{
+.title, .title-entry, .title-login{
 	flex: 0 1 auto;
 	list-style: none;
 	text-align: center;
 	margin: auto;
-	padding-left:15%;
+	padding-left:18%;
 }
 .title-entry{
-	padding-left: 16%;
+	padding-left: 18.5%;
 }
+.title-login{
+	padding-left: 33%;
+	display: inline;
+	flex: 0 3 auto;
 
-.title li, .title-entry li {
+}
+.title li, .title-entry li ,.title-login li{
 	font-size:20pt;
 
 }
+
 .navigation{
 	flex: 0 1 auto;
-	width:9%;
+	width:15%;
 	margin: auto;
 	display: inline-flex;
 	justify-content: space-evenly;
@@ -58,7 +65,6 @@ box-shadow: 0 4px 2px -2px gray;
 	margin-left: 2%;
 	display: inline;
 	text-align: center;
-	vertical-align: middle;
 }
 
 .save, .arrow-up{
@@ -70,13 +76,35 @@ box-shadow: 0 4px 2px -2px gray;
 .link{
 	text-decoration: none;
 }
+.link:visited{
+	color:grey;
+}
 .link:hover{
 	color: rgb(197,168,118);
 	text-decoration:underline;
 }
-.link:visited{
-	color:grey;
-}
 .link:active {
     color:rgb(197,168,118) ;
+}
+
+@media (max-width: 1408px) and (min-width: 1212px){
+	.title{
+		padding-left:15%;
+	}
+}
+@media (max-width: 1211px) and (min-width: 1061px){
+	.title{
+		padding-left:14%;
+	}
+	.userName, .logout{
+	margin-left: 1%;
+	}
+}
+@media (max-width: 1060px) and (min-width: 856px){
+	.title{
+		padding-left:12%;
+	}
+	.userName, .logout{
+	margin-left: 0;
+	}
 }
