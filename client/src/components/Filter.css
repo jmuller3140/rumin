@@ -1,12 +1,12 @@
 .filter-container{
-	width:100%;
+	width:96%;
 	position:absolute;
-	left:1%;
+	left:4%;
 	top:24%;
 	z-index:10000;
 }
 .filter-wrapper{
-	width:30%;
+	width:33%;
 	margin:0 auto;
 }
 
@@ -14,25 +14,25 @@
 
 }
 
-@media (max-width: 1408px) and (min-width: 1212px){
+@media (max-width: 1408px) and (min-width: 1261px){
 	.filter-wrapper{
 		width:35%;
 		margin:0 auto;
 	}
 }
-@media (max-width: 1211px) and (min-width: 1061px){
+@media (max-width: 1260px) and (min-width: 1105px){
 	.filter-wrapper{
 		width:40%;
 		margin:0 auto;
 	}
 }
-@media (max-width: 1060px) and (min-width: 856px){
+@media (max-width: 1104px) and (min-width: 856px){
 	.filter-wrapper{
 		width:50%;
 		margin:0 auto;
 	}
 	.filter-container{
-	width:100%;
+	width:97%;
 	position:absolute;
 	left:3%;
 	top:24%;

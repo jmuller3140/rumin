@@ -19,13 +19,3 @@ export default class Diary extends React.Component{
 				)
 		}
 }
-
-
-
-						// <form className='diaryForm'>
-						// 	<textarea name='diaryField' onChange={this.props.options} className='diaryField' placeholder='What is on your mind?'>
-						// 	</textarea>
-						// </form>
-					// <CSSTransition in={true} timeout={500} appear={true} classNames="diary">
-					// <Editor editorState={this.props.editorState} onChange={this.props.options} />
-					// </CSSTransition>
