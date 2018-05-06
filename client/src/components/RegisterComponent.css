@@ -15,6 +15,7 @@ text-align: center;
 }
 .registerForm input{
 	padding:.5em;
+	width:80%;
 	display:block;
 	border-radius: 5px;
 	border-width: thin;
@@ -48,4 +49,10 @@ border-radius: 5px;
 
 .registerForm{
 
+}
+
+@media (max-width: 1200px){
+	.registerForm input{
+	margin-left:-5%;
+	}
 }

@@ -2,7 +2,8 @@
 	position:relative;
 	float:left;
 	display:inline-flex;
-	vertical-align: middle
+	vertical-align: middle;
+	z-index: 2000;
 }
 .filterYear-input{
 	width:6em;
@@ -15,8 +16,17 @@
 	border-width: thin;
 	border-color: grey;
 	letter-spacing: .1em;
+	z-index: 2000;
 
 }
 .filterYear-input:focus{
 	outline:none;
+}
+#info-icon{
+	position:absolute;
+	left:500px;
+	top:-10px;
+	color:white;
+	z-index:10000;
+	font-size: 12pt;
 }

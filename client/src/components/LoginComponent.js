@@ -20,7 +20,7 @@ import './LoginComponent.css';
                        <li><label>LOGIN</label></li>
                         <li><input name='email' placeholder='Email' onChange={e => this.onChange(e)} value={this.props.email}/></li>
                        <li><input name='password' type='password' placeholder='Password' onChange={e => this.onChange(e)} value={this.props.password}/></li>
-                        <li><input type='submit' value='Submit' /></li>
+                        <li><input className='submit' type='submit' value='Submit' /></li>
                    </ul>
                   </form>
             </div>

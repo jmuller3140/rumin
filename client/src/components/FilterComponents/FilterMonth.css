@@ -2,4 +2,5 @@
 	position:relative;
 	float:left;
 	display:inline-flex;
+	z-index: 2000;
 }

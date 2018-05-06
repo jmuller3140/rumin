@@ -29,32 +29,14 @@ export default class JournalDisplay extends React.Component{
 		 if(unSorted.length >= 1 && unSorted[0].id !== 1){
 		let firstColumn = [], secondColumn = [], thirdColumn = [];
 		 for(var i = 0; i < unSorted.length; i++){
-		// 	if(firstColumn.length == thirdColumn.length || firstColumn.length == undefined){
 				firstColumn.push(unSorted[i]);
-			// }
-			// else if(firstColumn.length > secondColumn.length){
-			// 	secondColumn.push(unSorted[i]);
-			// }
-			// else if(secondColumn.length > thirdColumn.length){
-			// 	thirdColumn.push(unSorted[i]);
-			// }
+
 		}
 		let left = firstColumn.map((post) => {
 			let props = {id: post.id, columnSection: 'left', onClick: this.props.onClickHandler, dateString: post.dateString, sampleText: post.sampleText, editorState: post.editorState};
 			return (<Column {...props} />)
 			}
 		);
-
-		// let middle = secondColumn.map((post) => {
-		// 	let props = {id: post.id, columnSection: 'middle', onClick: this.props.onClickHandler, dateString: post.dateString, sampleText: post.sampleText, editorState: post.editorState};
-		// 	return (<Column {...props} />)
-		// 	}
-		// );
-		// let right = thirdColumn.map((post) =>{
-		// 	let props = {id: post.id, columnSection: 'right', onClick: this.props.onClickHandler, dateString: post.dateString, sampleText: post.sampleText, editorState: post.editorState};
-		// 	return (<Column {...props} />)
-		// 	}
-		// );
 
 		return (
 			<div>
@@ -64,9 +46,6 @@ export default class JournalDisplay extends React.Component{
 			</div>
 			)
 		}
-		// else{ 
-		// 	return
-		// }
 	}
 
 

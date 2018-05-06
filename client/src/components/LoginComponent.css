@@ -14,6 +14,7 @@ text-align: center;
 	margin-right:10%;
 }
 .loginForm input{
+	width:80%;
 	padding:.5em;
 	display:block;
 	border-radius: 5px;
@@ -46,6 +47,9 @@ background:rgba(255, 255, 255, 0.8);
 border-radius: 5px;
 }
 
-.loginForm{
-
+@media (max-width: 1200px){
+	.loginForm input{
+	width:80%;
+	margin-left:-5%;
+	}
 }
