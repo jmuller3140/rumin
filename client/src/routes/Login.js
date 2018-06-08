@@ -8,6 +8,7 @@ import LoginComponent from '../components/LoginComponent';
 import Header from '../components/Header';
 
 import 'react-toastify/dist/ReactToastify.css';
+import './Login.css'
 
  export default class Login extends React.Component{
  	constructor(){
@@ -29,7 +30,9 @@ import 'react-toastify/dist/ReactToastify.css';
 	  }
 
 	  addNotification = () => toast("Your registration was successful", {
-      position: toast.POSITION.BOTTOM_RIGHT
+	  type: toast.TYPE.SUCCESS,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      hideProgressBar: true
   });
 
 ////////////////////////////////////
@@ -73,7 +76,7 @@ import 'react-toastify/dist/ReactToastify.css';
         <div>
           <Header pageName="Login" />
           <LoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
-          <ToastContainer />
+          <ToastContainer toastClassName="toast"  />
         </div>
         )    	
       
