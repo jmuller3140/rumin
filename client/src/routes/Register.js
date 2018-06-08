@@ -20,6 +20,7 @@ import Header from '../components/Header';
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkPassword = this.checkPassword.bind(this);
+    this.checkEmail = this.checkEmail.bind(this);
     this.addNotification = this.addNotification.bind(this);
   }
 /////////////////////////////////////
@@ -40,10 +41,17 @@ import Header from '../components/Header';
       autoClose: 6000
   });
 /////////////////////////////////////
-/* onChange to change input values */
+/* check for correct password format */
 /////////////////////////////////////
   checkPassword = (str) => {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return re.test(str);
+  }
+/////////////////////////////////////
+/* check for correct email format */
+/////////////////////////////////////
+  checkEmail = (str) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(str);
   }
 ////////////////////////////////////
@@ -52,8 +60,10 @@ import Header from '../components/Header';
     handleSubmit = (e) =>{
      e.preventDefault();
       const { email, password, passwordConfirm, firstName, lastName } = this.state;
-      let confirmation = this.checkPassword(password);
-      if(password == passwordConfirm && confirmation){
+      let emailConfirmation = this.checkEmail(email);
+      let passwordConfirmation = this.checkPassword(password);
+
+      if(password == passwordConfirm && passwordConfirmation && emailConfirmation){
           const data = {email: email, password: password, firstName: firstName, lastName: lastName};
 
           let that=this;
@@ -64,21 +74,18 @@ import Header from '../components/Header';
         .send( data )
         .end(function(err, res){
           if(res.status == 201){
-          // that.setState({email: ''});
-          // that.setState({password: ''});
-          // that.setState({passwordConfirm: ''});
-          // that.setState({firstName: ''});
-          // that.setState({lastName: ''});
           that.setState({redirect: true});
         }
           console.log(res);
         }); 
 
+      }else if(!emailConfirmation){
+        this.addNotification("Email incorrectly formatted. Re-enter your email.");
       }else if(password != passwordConfirm){
         this.setState({password: ''});
         this.setState({passwordConfirm: ''});
         this.addNotification("Password did not match it's confirmation.");
-      }else if(confirmation == false){
+      }else if(!passwordConfirmation){
         this.addNotification("Password must have at least one number, one lowercase and one uppercase letter, at least six characters that are letters, numbers or the underscore.");
       }
  
