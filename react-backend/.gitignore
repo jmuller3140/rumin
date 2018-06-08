@@ -1,8 +1,15 @@
+# dependencies
+/node_modules
+
+# testing
+
+
+# production
+
+# misc
 URL_HOME=/
 URL_LOGIN=/login
 URL_REGISTER=/register
 URL_SAVE=/save
 SECRET_KEY=JKASDKBBFIEBFIUWEIBWIW
 MONGODB_PW=mseGsJjqkAOxlXR0
-
-smellllyyyyyyyyy
