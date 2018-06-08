@@ -55,7 +55,7 @@ router.get(process.env.URL_HOME, checkAuth, (req, res, next) => {
 });
 
 
-router.post(process.env.URL_HOME, function(req, res) {
+router.post(process.env.URL_HOME, checkAuth, function(req, res) {
 
     if(!req.body || req.body.length === 0) {
       console.log('request body not found');
@@ -74,8 +74,28 @@ router.post(process.env.URL_HOME, function(req, res) {
   })
   .catch(err => console.log("The error is " + err));
 
-  
 });
+
+
+router.put(process.env.URL_HOME, checkAuth, function(req, res) {
+      if(!req.body || req.body.length === 0) {
+      console.log('request body not found');
+      return res.sendStatus(400);
+  }
+   console.log(req.body.id);
+   Entry.findByIdAndUpdate(req.body.id, {entry: req.body.editorStateConverted}, (err, todo) => {
+    // Handle any possible database errors
+        if (err){
+          throw err;
+        }
+    })
+    .then(result => {
+      console.log(result);
+      res.json({success: "Your entry updated successfully", status: 200});
+  })
+  .catch(err => console.log("The error is " + err));
+});
+
 
 
 

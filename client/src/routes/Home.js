@@ -29,6 +29,8 @@ export default class Home extends React.Component {
 		this.onClickHighlighted = this.onClickHighlighted.bind(this);
 		this.filter = this.filter.bind(this);
 		this.deleteEntry = this.deleteEntry.bind(this);
+		this.editEntry = this.editEntry.bind(this);
+		this.entryEventHandler = this.entryEventHandler.bind(this);
 
 		this.state = {onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
 					entries: [{id:1, dateTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}], 
@@ -171,8 +173,38 @@ export default class Home extends React.Component {
 			}
 		});
 	}
+	//////////////////////////
+	/* saves edits on entry */
+	//////////////////////////
+	editEntry(editorState, id, e){
+		const editorStateConverted = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+		const data = {id: id, editorStateConverted: editorStateConverted};
+		console.log(data);
 
+	    let that=this;
+	    request
+		.put('http://localhost:3001/')
+		.set('Content-Type', 'application/json')
+		.set('Accept', 'application/json')
+		.set('authorization', 'bearer ' + localStorage.getItem('token'))
+		.send( data )
+		.end(function(err, res){
+			that.setState({visible: false});
+			if(res.status == 200){
+				console.log(res);
+				window.location.reload();
+			}
+		});
+	}
 
+	///////////////////
+	/* edits entry */
+	///////////////////
+
+	entryEventHandler = (highlightedEditorState) => {
+		console.log(this.state.highlightedEditorState);
+		this.setState({highlightedEditorState});
+	}
 /////////////////////////////////////////////////////////
 /* calls post request to retrieve user journal entries */
 /////////////////////////////////////////////////////////
@@ -182,10 +214,7 @@ export default class Home extends React.Component {
 	     method: 'get',
 	     headers: {'Content-Type':'application/json',
 	                'Accept': 'application/json',
-	            	'authorization': 'bearer ' + localStorage.getItem('token')},
-	     body: {
-	      refreshToken: refreshToken
-	     }
+	            	'authorization': 'bearer ' + localStorage.getItem('token')}
 	    })
 	    .then(res => res.json())
 	    .then(data => {
@@ -212,7 +241,7 @@ export default class Home extends React.Component {
 		if(isAuth)
 		{
 			const propsFilter = {onChange: this.onChange, 
-			 					  onChangeMonthHandler:this.onChangeMonthHandler, 
+			 					  onChangeMonthHandler: this.onChangeMonthHandler, 
 			 					  months: this.state.months,
 			 					  onChangeMonth: this.state.onChangeMonth, 
 			 					  onChangeDay: this.state.onChangeDay,
@@ -233,7 +262,9 @@ export default class Home extends React.Component {
 								onClickHandler: this.onClickHandler, 
 								highlightedEditorState: this.state.highlightedEditorState, 
 								highlightedId:this.state.highlightedId,
-								deleteEntry: this.deleteEntry
+								deleteEntry: this.deleteEntry,
+								editEntry: this.editEntry,
+								entryEventHandler: this.entryEventHandler
 							};
 			return  (
 			<div>

@@ -26,7 +26,7 @@ export default class Entry extends React.Component{
 	saveEventHandler(e){
 		const { editorState } = this.state;
 		const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-		// const adata = convertToRaw(convertFromRaw(data));
+
 		console.log(data);
 	    e.preventDefault();
 

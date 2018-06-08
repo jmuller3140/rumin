@@ -1,9 +1,13 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import request from 'superagent';
+import queryString from 'query-string';
+import { ToastContainer, toast } from 'react-toastify';
 
 import LoginComponent from '../components/LoginComponent';
 import Header from '../components/Header';
+
+import 'react-toastify/dist/ReactToastify.css';
 
  export default class Login extends React.Component{
  	constructor(){
@@ -23,6 +27,11 @@ import Header from '../components/Header';
 	      [e.target.name]: e.target.value
 	    })
 	  }
+
+	  addNotification = () => toast("Your registration was successful", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+
 ////////////////////////////////////
 /* loginHandler to log someone in */
 ////////////////////////////////////
@@ -54,13 +63,19 @@ import Header from '../components/Header';
 
 }
 
-  
    render(){
+   	console.log(window.location.search);
+   	const params = queryString.parse(window.location.search);
+   	if(params.msg === "success"){
+   		this.addNotification();
+   	}
      return (
         <div>
           <Header pageName="Login" />
           <LoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
+          <ToastContainer />
         </div>
-        )
+        )    	
+      
    }
  }

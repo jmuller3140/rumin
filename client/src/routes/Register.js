@@ -12,7 +12,8 @@ import Header from '../components/Header';
           email: '',
           password: '',
           firstName: '',
-          lastName: ''
+          lastName: '',
+          redirect: false
       };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,10 +41,14 @@ import Header from '../components/Header';
     .set('Accept', 'application/json')
     .send( data )
     .end(function(err, res){
+      if(res.status == 201){
       that.setState({email: ''});
       that.setState({password: ''});
       that.setState({firstName: ''});
       that.setState({lastName: ''});
+      that.setState({redirect: true});
+
+    }
       console.log(res);
     });  
 }
@@ -52,6 +57,7 @@ import Header from '../components/Header';
     const props = {handleSubmit: this.handleSubmit, onChange: this.onChange, email: this.state.email, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName};
      return (
       <div>
+        {this.state.redirect && <Redirect to='/?msg=success' />}
         <Header pageName="Register"/>
         <RegisterComponent {...props}/>
       </div>

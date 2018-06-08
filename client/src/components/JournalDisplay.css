@@ -78,7 +78,7 @@
     font-family: Typewriter;
     overflow-y: scroll;
 }
-.btn-delete-popup, .btn-edit-entry{
+.btn-delete-popup, .btn-edit-entry, .btn-save-entry, .btn-cancel-entry{
 	width:5em;
 	height:2em;
 	border-radius:5px 5px 0px 0px;
