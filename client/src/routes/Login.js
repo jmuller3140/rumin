@@ -19,6 +19,7 @@ import './Login.css'
     	};
  		this.onChange = this.onChange;
  		this.handleSubmit = this.handleSubmit;
+ 		this.checkEmail = this.checkEmail;
  	}
 ///////////////////////////////////////////
 /* onChange event handler to change text */
@@ -37,34 +38,48 @@ import './Login.css'
       hideProgressBar: true
   });
 
+/////////////////////////////////////
+/* check for correct email format */
+/////////////////////////////////////
+  checkEmail = (str) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(str);
+  }
 ////////////////////////////////////
 /* loginHandler to log someone in */
 ////////////////////////////////////
 	  handleSubmit = (e) => {
-	       const { email, password } = this.state;
-	       const data = { email: email, password: password };
+	    const { email, password } = this.state;
+	    const data = { email: email, password: password };
 	    e.preventDefault();
-	    request
-	    .post('http://localhost:3001/login')
-	    .set('Content-Type','application/json')
-	    .set('Accept', 'application/json')
-	    .send( data )
-	    .end((err, res) => {
-	    if(err){
-	    		console.log(err);
-	    } else {
-	      console.log(res.status);
-	      const { token } = res.body;
-	      const decodedToken = jwtDecode(token);
-	      console.log(decodedToken);
-	      const { firstName, lastName } = decodedToken;
-	       localStorage.setItem('token', token);
-	       localStorage.setItem('firstName', firstName);
-	       localStorage.setItem('lastName', lastName);
+        let emailConfirmation = this.checkEmail(email);
 
-	       window.location.reload();
-	    }
-	    });
+        if(emailConfirmation){
+
+		    request
+		    .post('http://localhost:3001/login')
+		    .set('Content-Type','application/json')
+		    .set('Accept', 'application/json')
+		    .send( data )
+		    .end((err, res) => {
+		    if(err){
+		    		console.log(err);
+		    } else {
+		      console.log(res.status);
+		      const { token } = res.body;
+		      const decodedToken = jwtDecode(token);
+		      console.log(decodedToken);
+		      const { firstName, lastName } = decodedToken;
+		       localStorage.setItem('token', token);
+		       localStorage.setItem('firstName', firstName);
+		       localStorage.setItem('lastName', lastName);
+
+		       window.location.reload();
+		    }
+		    });
+      }else {
+        this.addNotification("Incorrect email format. Please Re-enter your email.", toast.TYPE.ERROR);
+      }
 
 }
 ////////////////////////////////////
