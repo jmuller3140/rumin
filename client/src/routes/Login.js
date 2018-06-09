@@ -28,9 +28,11 @@ import './Login.css'
 	      [e.target.name]: e.target.value
 	    })
 	  }
-
-	  addNotification = () => toast("Your registration was successful", {
-	  type: toast.TYPE.SUCCESS,
+///////////////////////////////////////////
+/* adds a notification */
+///////////////////////////////////////////
+	  addNotification = (msg, type) => toast(msg, {
+	  type: type,
       position: toast.POSITION.BOTTOM_RIGHT,
       hideProgressBar: true
   });
@@ -70,7 +72,7 @@ import './Login.css'
    	console.log(window.location.search);
    	const params = queryString.parse(window.location.search);
    	if(params.msg === "success"){
-   		this.addNotification();
+   		this.addNotification("Your registration wass successful", toast.TYPE.SUCCESS);
    	}
      return (
         <div>
