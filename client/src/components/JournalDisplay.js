@@ -24,12 +24,6 @@ export default class JournalDisplay extends React.Component{
 		this.setState({deletePopup: !this.state.deletePopup});
 	}
 
-///////////////////////////////////////////////
-/* shows and hides confirmation entry delete */
-///////////////////////////////////////////////
-	changeEditState(e){
-		this.setState({readOnlyEntry: !this.state.readOnlyEntry});
-	}
 /////////////////////////////////////////////////////
 /* sorts entries and disperses them into 3 columns */
 /////////////////////////////////////////////////////
@@ -56,8 +50,6 @@ export default class JournalDisplay extends React.Component{
 		}
 	}
 
-
-
 	render(){
 
 		const dateMap = this.sort(this.props.entries);
@@ -77,23 +69,23 @@ export default class JournalDisplay extends React.Component{
 																				this.props.onClickHighlighted(false, e);  
 																				this.changeDeleteState(e);
 																			}}>Delete</button>
-								{this.state.readOnlyEntry && (<button className='btn-edit-entry' onClick={(e) => {
+								{this.props.readOnlyEntry && (<button className='btn-edit-entry' onClick={(e) => {
 																				this.props.onClickHighlighted(false, e);  
-																				this.changeEditState(e);
+																				this.props.changeEditState(false, e);
 																			}}>Edit</button>
 								)}
-								{!this.state.readOnlyEntry && (<button className='btn-save-entry' onClick={(e) => {
+								{!this.props.readOnlyEntry && (<button className='btn-save-entry' onClick={(e) => {
 																				this.props.onClickHighlighted(false, e);  
 																				this.props.editEntry(this.props.highlightedEditorState, this.props.highlightedId, e);
 																			}}>Save</button>
 								)}
-								{!this.state.readOnlyEntry && (<button className='btn-cancel-entry' onClick={(e) => {
+								{!this.props.readOnlyEntry && (<button className='btn-cancel-entry' onClick={(e) => {
 																				this.props.onClickHighlighted(false, e);  
-																				this.changeEditState(e);
+																				this.props.changeEditState(true, e);
 																			}}>Cancel</button>
 								)}								
 								<div className='journal-highlighted' onClick={(e) => this.props.onClickHighlighted(false, e)} >
-									<Editor editorState={this.props.highlightedEditorState} readOnly={this.state.readOnlyEntry} onChange={this.props.entryEventHandler}/>
+									<Editor editorState={this.props.highlightedEditorState} readOnly={this.props.readOnlyEntry} onChange={this.props.entryEventHandler}/>
 								</div>
 							</div>
 						</div>
@@ -116,12 +108,3 @@ export default class JournalDisplay extends React.Component{
 	}
 
 }
-
-
-
-						// <div className='middle-column'>
-						// {middle}
-						// </div>
-						// <div className='right-column'>
-						// {right}
-						// </div>

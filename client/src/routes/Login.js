@@ -67,13 +67,19 @@ import './Login.css'
 	    });
 
 }
-
-   render(){
+////////////////////////////////////
+/* loginHandler to log someone in */
+////////////////////////////////////
+	componentDidMount(){
    	console.log(window.location.search);
    	const params = queryString.parse(window.location.search);
    	if(params.msg === "success"){
    		this.addNotification("Your registration wass successful", toast.TYPE.SUCCESS);
    	}
+}
+
+
+   render(){
      return (
         <div>
           <Header pageName="Login" />

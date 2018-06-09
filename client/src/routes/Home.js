@@ -31,10 +31,11 @@ export default class Home extends React.Component {
 		this.deleteEntry = this.deleteEntry.bind(this);
 		this.editEntry = this.editEntry.bind(this);
 		this.entryEventHandler = this.entryEventHandler.bind(this);
+		this.changeEditState = this.changeEditState.bind(this);
 
 		this.state = {onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
 					entries: [{id:1, dateTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}], 
-					highlightedEditorState: EditorState.createEmpty(), highlightedId: "", visible: false };
+					highlightedEditorState: EditorState.createEmpty(), highlightedEditorCopy: EditorState.createEmpty(), highlightedId: "", visible: false, readOnlyEntry: true };
 
 	}
 	//////////////////////////////////////////
@@ -205,6 +206,18 @@ export default class Home extends React.Component {
 		console.log(this.state.highlightedEditorState);
 		this.setState({highlightedEditorState});
 	}
+	///////////////////
+	/* edits entry */
+	///////////////////	
+	changeEditState(cancel, e){
+		if(cancel){
+			this.setState({highlightedEditorState: this.state.highlightedEditorCopy});
+			this.setState({readOnlyEntry: !this.state.readOnlyEntry});
+		}else{
+			this.setState({readOnlyEntry: !this.state.readOnlyEntry});
+			this.setState({highlightedEditorCopy: this.state.highlightedEditorState});
+		}
+	}
 /////////////////////////////////////////////////////////
 /* calls post request to retrieve user journal entries */
 /////////////////////////////////////////////////////////
@@ -260,11 +273,14 @@ export default class Home extends React.Component {
 								visible: this.state.visible, 
 								onClickHighlighted: this.onClickHighlighted, 
 								onClickHandler: this.onClickHandler, 
-								highlightedEditorState: this.state.highlightedEditorState, 
+								highlightedEditorState: this.state.highlightedEditorState,
+								hightlightedEditorCopy: this.state.highlightedEditorCopy, 
 								highlightedId:this.state.highlightedId,
 								deleteEntry: this.deleteEntry,
 								editEntry: this.editEntry,
-								entryEventHandler: this.entryEventHandler
+								entryEventHandler: this.entryEventHandler,
+								changeEditState: this.changeEditState,
+								readOnlyEntry: this.state.readOnlyEntry
 							};
 			return  (
 			<div>
