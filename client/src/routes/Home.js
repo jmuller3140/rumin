@@ -222,7 +222,6 @@ export default class Home extends React.Component {
 /* calls post request to retrieve user journal entries */
 /////////////////////////////////////////////////////////
 	componentDidMount(){
-		const refreshToken = localStorage.getItem('refreshToken');
 	    fetch('http://localhost:3001/', {
 	     method: 'get',
 	     headers: {'Content-Type':'application/json',
@@ -292,7 +291,13 @@ export default class Home extends React.Component {
 			)
 		}
 		else {
-			window.location.reload();
+			var url = window.location.href;    
+			if (url.indexOf('?') > -1){
+			   url += '&msg=logout';
+			}else{
+			   url += '?msg=logout';
+			}
+			window.location.href = url;
 		}
 	}
 };

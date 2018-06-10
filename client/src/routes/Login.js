@@ -90,6 +90,8 @@ import './Login.css'
    	const params = queryString.parse(window.location.search);
    	if(params.msg === "success"){
    		this.addNotification("Your registration wass successful", toast.TYPE.SUCCESS);
+   	}else if(params.msg === "logout"){
+   		this.addNotification("Your session expired. Please login again.", toast.TYPE.INFO);
    	}
 }
 
