@@ -5,16 +5,17 @@
 	vertical-align: middle
 }
 .filterDay-input{
-	width:5em;
-	margin-top:.25em;
+	width:6em;
+	position:relative;
+	float:left;
 	padding-top:.5em;
-	padding-bottom:.25em;
+	padding-bottom:.5em;
 	text-align:center;
 	font-family: MoonLight;
 	border-radius: 5px 0px 0px 5px;
 	border-width: thin;
 	border-color: grey;
-
+	display: inline-flex;
 }
 .filterDay-input:focus{
 	outline:none;

@@ -7,9 +7,11 @@
 }
 .filterYear-input{
 	width:6em;
-	margin-top:.25em;
+	position:relative;
+	float:left;
+	margin-top:0;
 	padding-top:.5em;
-	padding-bottom:.25em;
+	padding-bottom:.5em;
 	text-align:center;
 	font-family: MoonLight;
 	border-radius: 0px 5px 5px 0px;
@@ -17,6 +19,7 @@
 	border-color: grey;
 	letter-spacing: .1em;
 	z-index: 2000;
+	display: inline-flex;
 
 }
 .filterYear-input:focus{

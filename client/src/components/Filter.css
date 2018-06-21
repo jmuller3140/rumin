@@ -4,9 +4,11 @@
 	left:4%;
 	top:24%;
 	z-index:10000;
+	display:block;
 }
 .filter-wrapper{
-	width:33%;
+	width:25%;
+	min-width:425px;
 	margin:0 auto;
 }
 

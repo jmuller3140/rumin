@@ -3,11 +3,16 @@ import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'd
 import {CSSTransition} from 'react-transition-group';
 import request from 'superagent';
 import {Redirect} from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
 import JournalDisplay from '../components/JournalDisplay';
 import Filter from '../components/Filter';
+import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
+import MobileFilter from '../components/MobileComponents/MobileFilter';
+import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
+
 export default class Home extends React.Component {
 	constructor(props){
 		super(props);
@@ -49,9 +54,10 @@ export default class Home extends React.Component {
 	///////////////////////////////////////////////////
 	/*handler for changing value of the month input*/
 	//////////////////////////////////////////////////
-	 onChangeMonthHandler = (event, { newValue }) => {
+	 onChangeMonthHandler = (event) => {
+	 	console.log(event);
 		    this.setState({
-		      onChangeMonth: newValue
+		      onChangeMonth: event.value
 		    });
 		  };
 	//////////////////////////////////////////
@@ -254,7 +260,7 @@ export default class Home extends React.Component {
 		{
 			const propsFilter = {onChange: this.onChange, 
 			 					  onChangeMonthHandler: this.onChangeMonthHandler, 
-			 					  months: this.state.months,
+			 					  months: this.months,
 			 					  onChangeMonth: this.state.onChangeMonth, 
 			 					  onChangeDay: this.state.onChangeDay,
 			 					  onChangeYear: this.state.onChangeYear,
@@ -283,10 +289,17 @@ export default class Home extends React.Component {
 							};
 			return  (
 			<div>
-				<Header pageName='Home' />
-				<ProfileImage/>
-				<Filter {...propsFilter} />
-				<JournalDisplay {...propsJournal} />
+				<MediaQuery minWidth={896}>
+					<Header pageName='Home' />
+					<ProfileImage/>
+					<Filter {...propsFilter} />
+					<JournalDisplay {...propsJournal} />
+				</MediaQuery>
+				<MediaQuery maxWidth={895}>
+					<MobileHeaderHome />
+					<MobileFilter {...propsFilter}/>
+					<MobileJournalDisplay {...propsJournal}/>	
+				</MediaQuery>
 			</div>
 			)
 		}

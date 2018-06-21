@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/fontawesome-free-solid/';
 import ReactTooltip from 'react-tooltip';
+import MediaQuery from 'react-responsive';
 
 import FilterMonth from './FilterComponents/FilterMonth';
 import FilterDay from './FilterComponents/FilterDay';
@@ -30,10 +31,12 @@ export default class Filter extends React.Component{
 					<FilterYear {...props }/>
 				</div>
 			</div>
+			<MediaQuery minWidth={1040}>
 				<FontAwesomeIcon data-tip={true} data-for='infoTooltip' id='info-icon' icon={faInfoCircle}/>
 		   		<ReactTooltip id='infoTooltip' place="right" type='dark' effect='solid'>
   					<p style={style}>{title}</p>
 				</ReactTooltip>
+			</MediaQuery>
 		</div>
 			)
 	}

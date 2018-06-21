@@ -1,0 +1,28 @@
+#mobile-header-container{
+	position: relative;
+	float:left;
+	width:100%;
+	display: inline;
+	background-color: grey;
+}
+#mobile-bars-wrapper{
+	position: relative;
+	float:left;
+	font-size:18pt;
+	padding-top:1em;
+	padding-bottom:1em;
+	padding-left: 1em;
+}
+#mobile-bars{
+	position: relative;
+}
+#mobile-title-wrapper{
+	position: relative;
+	float:left;
+	font-size:18pt;
+	padding-left:40%;
+}
+#mobile-title{
+	position: relative;
+	font-family: 'moonLight';
+}

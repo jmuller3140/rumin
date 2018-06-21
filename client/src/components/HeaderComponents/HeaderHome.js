@@ -33,7 +33,7 @@ export default class HeaderHome extends React.Component{
 								<li><Link  className='link' to='Entry'>Entry</Link></li> 
 							</ul>
 				</div>
-			</header>			
+			</header>		
 		);
 	}
 }

@@ -3,12 +3,12 @@ import jwtDecode from 'jwt-decode';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
 
-import Column from './Column';
+import MobileColumn from './MobileColumn';
 
-import './JournalDisplay.css';
+import './MobileJournalDisplay.css';
 
 
-export default class JournalDisplay extends React.Component{
+export default class MobileJournalDisplay extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {deletePopup: false, readOnlyEntry: true};
@@ -36,13 +36,13 @@ export default class JournalDisplay extends React.Component{
 		}
 		let columnDisplay = column.map((post) => {
 			let props = {id: post.id, onClick: this.props.onClickHandler, dateString: post.dateString, sampleText: post.sampleText, editorState: post.editorState};
-			return (<Column {...props} />)
+			return (<MobileColumn {...props} />)
 			}
 		);
 
 		return (
 			<div>
-				<div className='column-display'>
+				<div className='mobile-column-display'>
 					 {columnDisplay}
 				</div>
 			</div>
@@ -55,15 +55,16 @@ export default class JournalDisplay extends React.Component{
 		const dateMap = this.sort(this.props.entries);
 		return (
 			<div>
-				<div className='journalEntry-container'>
-					<div className='journalEntry-wrapper'>
-						{dateMap}
-					</div>
-				</div> 
+	
+					<div id='mobile-journalEntry-container'>
+						<div id='mobile-journalEntry-wrapper'>
+							{dateMap}
+						</div>
+					</div> 
 
 				{this.props.visible && (
-						<div className='journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>
-							<div className='journal-highlighted-wrapper' onClick={(e) => this.props.onClickHighlighted(false, e)}>
+						<div className='mobile-journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>
+							<div className='mobile-journal-highlighted-wrapper' onClick={(e) => this.props.onClickHighlighted(false, e)}>
 								<button className='btn-delete-popup' onClick={(e) => {
 																				this.props.onClickHighlighted(false, e);  
 																				this.changeDeleteState(e);

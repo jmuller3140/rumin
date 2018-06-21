@@ -1,6 +1,18 @@
-.filterMonth-contents{
+div.Select-control{
+	border:1px solid black;
+	width:10em;
+	font-family: MoonLight;
+	border-radius: 0;
+}
+.filterMonth{
+	width:10em;
 	position:relative;
 	float:left;
-	display:inline-flex;
+	padding-bottom:.25em;
+	text-align:center;
+	font-family: MoonLight;
+	border-radius: 0px 5px 5px 0px;
+	letter-spacing: .1em;
 	z-index: 2000;
+	display: inline-flex;
 }
