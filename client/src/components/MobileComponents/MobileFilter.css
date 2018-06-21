@@ -4,6 +4,7 @@
 	display: block;
 	float:left;
 	z-index:10000;
+	background-color: rgba(245, 222, 179, 1);
 }
 .mobile-filter-wrapper{
 	width:45%;

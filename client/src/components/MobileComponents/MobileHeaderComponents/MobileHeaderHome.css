@@ -3,7 +3,7 @@
 	float:left;
 	width:100%;
 	display: inline;
-	background-color: grey;
+	background-color: rgba(245, 222, 179, 1);
 }
 #mobile-bars-wrapper{
 	position: relative;
