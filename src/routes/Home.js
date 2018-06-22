@@ -12,6 +12,7 @@ import Filter from '../components/Filter';
 import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
 import MobileFilter from '../components/MobileComponents/MobileFilter';
 import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
+import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
 
 export default class Home extends React.Component {
 	constructor(props){
@@ -241,7 +242,10 @@ export default class Home extends React.Component {
 	      	for(var i=0; i<data.length; i++){
 	      		const { dateString, id, dateTime } = data[i];
 	      		const content = convertFromRaw(JSON.parse(data[i].entry));
-	      		const sampleText = content.getPlainText('').slice(0, 500) + '......';
+	      		let sampleText = content.getPlainText('').slice(0, 500);
+	      		if(sampleText.length === 500){
+	      			sampleText = sampleText + '......';
+	      		}
 	      		const convertedEntry = EditorState.createWithContent(content);
 	      		const instance = { dateTime: dateTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
 	      		dataArray.push(instance);
@@ -298,7 +302,8 @@ export default class Home extends React.Component {
 				<MediaQuery maxWidth={895}>
 					<MobileHeaderHome />
 					<MobileFilter {...propsFilter}/>
-					<MobileJournalDisplay {...propsJournal}/>	
+					<MobileJournalDisplay {...propsJournal}/>
+					<MobileFooterHome />	
 				</MediaQuery>
 			</div>
 			)

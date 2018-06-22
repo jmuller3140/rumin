@@ -1,10 +1,16 @@
 import React from 'react';
 import request from 'superagent';
+import MediaQuery from 'react-responsive';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
 import Diary from '../components/Diary';
 import {Editor, EditorState, convertToRaw, convertFromRaw, ContentState} from 'draft-js';
+
+import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
+import MobileFilter from '../components/MobileComponents/MobileFilter';
+import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
+import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
 
 export default class Entry extends React.Component{
 	constructor(props){
@@ -50,9 +56,16 @@ export default class Entry extends React.Component{
 		{
 			return (
 			<div>
-				<Header pageName='Entry' save={this.saveEventHandler}/>
-				<ProfileImage />
-				<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
+				<MediaQuery minWidth={896}>
+					<Header pageName='Entry' save={this.saveEventHandler}/>
+					<ProfileImage />
+					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
+				</MediaQuery>
+				<MediaQuery maxWidth={895}>
+					<MobileHeaderHome />
+					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
+					<MobileFooterHome />	
+				</MediaQuery>
 			</div>
 			)
 		} else {

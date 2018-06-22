@@ -1,28 +1,29 @@
-#mobile-header-container{
+.mobile-header-container{
 	position: relative;
 	float:left;
 	width:100%;
-	display: inline;
+	display: flex;
+	justify-content: center;
 	background-color: rgba(245, 222, 179, 1);
 }
-#mobile-bars-wrapper{
+/*#mobile-bars-wrapper{
 	position: relative;
 	float:left;
 	font-size:18pt;
 	padding-top:1em;
 	padding-bottom:1em;
 	padding-left: 1em;
-}
-#mobile-bars{
+}*/
+.mobile-bars{
 	position: relative;
 }
-#mobile-title-wrapper{
+.mobile-title-wrapper{
 	position: relative;
 	float:left;
-	font-size:18pt;
 	padding-left:40%;
 }
-#mobile-title{
+.mobile-title{
 	position: relative;
+	font-size: 15pt;
 	font-family: 'moonLight';
 }

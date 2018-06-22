@@ -10,8 +10,16 @@ export default class MobileColumn extends React.Component{
 	}
 
 	render(){
-		const {id, dateString, sampleText, columnSection, editorState} = this.props;
-		console.log(id);
+		const {id, dateString, columnSection, editorState} = this.props;
+		let {sampleText} = this.props;
+		let smallerText = "";
+		console.log(sampleText.length);
+		if(sampleText.length > 100){
+			const index = sampleText.indexOf(" ", 100);
+			smallerText = sampleText.slice(0,index);
+		} else{
+			smallerText = sampleText;
+		}
 		const className= 'mobile-journalEntry-content-container';
 		this.onClick = this.props.onClick;
 		return (
@@ -22,7 +30,7 @@ export default class MobileColumn extends React.Component{
 							{dateString}
 						</div>
 						<div className='mobile-journalEntry-text'>
-							<p>{sampleText}</p>
+							<p>{smallerText}</p>
 						</div>
 					</div>
 				</div>

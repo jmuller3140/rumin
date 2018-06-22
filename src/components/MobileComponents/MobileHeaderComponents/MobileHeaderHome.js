@@ -13,14 +13,15 @@ export default class MobileHeaderHome extends React.Component{
 
 	render(){
 		return(
-			<div id="mobile-header-container">
-				<div id="mobile-bars-wrapper">
-					<FontAwesomeIcon id='mobile-bars' icon={faBars} />
-				</div>
-				<div id="mobile-title-wrapper">
-					<p id="mobile-title">Rumin</p>
-				</div>
+			<div className="mobile-header-container">
+					<p className="mobile-title">Rumin</p>
 			</div>)
 	}
 
 }
+
+
+
+// // 				<div id="mobile-bars-wrapper">
+// 					<FontAwesomeIcon id='mobile-bars' icon={faBars} />
+// 				</div>

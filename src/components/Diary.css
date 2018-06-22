@@ -14,9 +14,7 @@
 width:100%;
 float:left;
 position:relative;
-/*background: url('../pic/wood-backdrop.jpg') repeat center fixed;*/
-background: white no-repeat center fixed;
-z-index:500;
+background: white;
 padding-top: 6%;
 padding-bottom: 20px;
 background: rgb(250,250,250);
