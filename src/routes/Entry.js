@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
 import Diary from '../components/Diary';
 import {Editor, EditorState, convertToRaw, convertFromRaw, ContentState} from 'draft-js';
+import { ToastContainer, toast } from 'react-toastify';
 
 import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
 import MobileFilter from '../components/MobileComponents/MobileFilter';
@@ -18,6 +19,7 @@ export default class Entry extends React.Component{
 		this.state = {editorState: EditorState.createEmpty()};
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.saveEventHandler = this.saveEventHandler.bind(this);
+		this.addNotification = this.addNotification.bind(this);
 	}
 //////////////////////////////////////////////////////
 /* event handler that updates the editor state text */
@@ -26,6 +28,12 @@ export default class Entry extends React.Component{
 		console.log(this.state.editorState);
 		this.setState({editorState});
 	}
+
+	 addNotification = (msg, type) => toast(msg, {
+	  type: type,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      hideProgressBar: true
+  });
 //////////////////////////////////////////////////////
 /* save handler that saves entry to db */
 //////////////////////////////////////////////////////
@@ -44,9 +52,13 @@ export default class Entry extends React.Component{
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))
 		.send( {data: data} )
 		.end(function(err, res){
-			const clearedEditorState = EditorState.push(editorState, ContentState.createFromText(''));
-			that.setState({editorState: clearedEditorState});
-			console.log(data);
+			if(res.status === 200){
+				const clearedEditorState = EditorState.push(editorState, ContentState.createFromText(''));
+				that.setState({editorState: clearedEditorState});
+				that.addNotification("Your journal entry was saved.", toast.TYPE.SUCCESS);
+			}else{
+				that.addNotification("Your journal entry was not saved. Try again.", toast.TYPE.ERROR);
+			}
 		});  
 	  }
 
@@ -60,11 +72,13 @@ export default class Entry extends React.Component{
 					<Header pageName='Entry' save={this.saveEventHandler}/>
 					<ProfileImage />
 					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
+					<ToastContainer toastClassName="toast"  />
 				</MediaQuery>
 				<MediaQuery maxWidth={895}>
 					<MobileHeaderHome />
 					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
 					<MobileFooterHome />	
+					<ToastContainer toastClassName="toast"  />
 				</MediaQuery>
 			</div>
 			)

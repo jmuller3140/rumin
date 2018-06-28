@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faSave, faArrowUp} from '@fortawesome/fontawesome-free-solid/';
+import ReactTooltip from 'react-tooltip';
 
 
 import './Header.css';
@@ -16,7 +17,9 @@ export default class HeaderEntry extends React.Component{
 		}
 	}
 	render(){
-		console.log(this.props.options);
+		const style={ width:'75px', letterSpacing: '.1em', fontFamily:'garamond', textAlign:'center'};
+		const props = this.props;
+		const title="Save Entry"
 		return (
 			<header>
 				<div className="navbar-container">
@@ -30,7 +33,10 @@ export default class HeaderEntry extends React.Component{
 								<li>{this.props.pageName}</li>
 							</ul>
 							<ul className='toolbar'>
-								<li><FontAwesomeIcon className='save' icon={faSave} onClick={this.props.save}/></li>
+								<li><FontAwesomeIcon data-tip={true} data-for='infoTooltip' icon={faSave} className='save' onClick={this.props.save}/></li>
+						   		<ReactTooltip id='infoTooltip' place="bottom" type='dark' effect='solid'>
+				  					<p style={style}>{title}</p>
+								</ReactTooltip>
 							</ul>
 							<ul className='navigation'>
 								<li><Link  className='link' to='/'>Home</Link></li>

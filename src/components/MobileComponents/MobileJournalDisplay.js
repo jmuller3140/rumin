@@ -57,9 +57,7 @@ export default class MobileJournalDisplay extends React.Component{
 			<div>
 	
 					<div id='mobile-journalEntry-container'>
-						<div id='mobile-journalEntry-wrapper'>
 							{dateMap}
-						</div>
 					</div> 
 
 				{this.props.visible && (

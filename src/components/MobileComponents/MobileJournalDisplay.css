@@ -1,3 +1,13 @@
+#mobile-journalEntry-container{
+	width:100%;
+	position:relative;
+	display:flex;
+	justify-content: flex-start;
+	float:left;
+	padding-bottom: 50%;
+	background: rgb(249,248,244);
+	min-height:495px;
+}
 .mobile-journal-highlighted-container{
 	position:fixed;
 	top: 0;
@@ -28,7 +38,7 @@
     overflow-y: scroll;
 }
 .mobile-column-display{
-	padding-bottom:10%;
+	padding-bottom:0%;
 }
 .btn-delete-popup, .btn-edit-entry, .btn-save-entry, .btn-cancel-entry{
 	width:5em;

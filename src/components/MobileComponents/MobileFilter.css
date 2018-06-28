@@ -1,83 +1,65 @@
 .mobile-filter-container{
 	width:100%;
 	position:relative;
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
+	align-items: center;
 	float:left;
 	z-index:10000;
 	background-color: rgba(245, 222, 179, 1);
 }
-.mobile-filter-wrapper{
-	width:45%;
-	min-width:356px;
-	margin: 0 auto;
-	position:relative;
-}
-.mobile-filterDay-contents{
-	position:relative;
-	float:left;
-	display:inline-flex;
-	vertical-align: middle;
-}
-.mobile-filterDay-input{
+.mobile-filterDay{
 	width:6em;
-	position:relative;
-	float:left;
 	padding-top:.5em;
 	padding-bottom:.5em;
 	text-align:center;
 	font-family: MoonLight;
+	font-size: 12pt;
 	border-radius: 5px 0px 0px 5px;
 	border-width: thin;
 	border-color: grey;
-	display: inline-flex;
-
 }
-.mobile-filterDay-input:focus{
+.mobile-filterDay:focus{
 	outline:none;
 }
 div.Select-control{
 	border:1px solid grey;
 	width:10em;
+	font-size: 12pt;
 	font-family: MoonLight;
-	border-radius: 0;
 }
 .mobile-filterMonth{
 	width:10em;
 	position:relative;
 	float:left;
-	padding-bottom:.25em;
 	text-align:center;
+	z-index: 2000;
 	font-family: MoonLight;
 	letter-spacing: .1em;
-	z-index: 2000;
 }
 .mobile-filterMonth:focus{
 	outline:none;
 }
-.mobile-filterYear-contents{
-	position:relative;
-	float:left;
-	vertical-align: middle;
-	z-index: 2000;
-}
-.mobile-filterYear-input{
+.mobile-filterYear{
 	width:6em;
-	position:relative;
-	float:left;
-	margin-top:0;
 	padding-top:.5em;
 	padding-bottom:.5em;
 	text-align:center;
 	font-family: MoonLight;
 	border-radius: 0px 5px 5px 0px;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+	border-right: 1px solid grey;
 	border-width: thin;
 	border-color: grey;
 	letter-spacing: .1em;
 	z-index: 2000;
-	display: inline-flex;
-
 }
-.mobile-filterYear-input:focus{
+.mobile-filterYear:focus{
 	outline:none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  height:auto;
+  opacity: 1;
 }
