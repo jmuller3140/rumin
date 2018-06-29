@@ -4,7 +4,6 @@ import {CSSTransition} from 'react-transition-group';
 import request from 'superagent';
 import {Redirect} from 'react-router-dom';
 import MediaQuery from 'react-responsive';
-import Spinner from 'react-spinkit';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
@@ -15,7 +14,6 @@ import MobileFilter from '../components/MobileComponents/MobileFilter';
 import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
 import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
 
-import './Home.css';
 
 export default class Home extends React.Component {
 	constructor(props){
@@ -233,7 +231,6 @@ export default class Home extends React.Component {
 /////////////////////////////////////////////////////////
 	componentDidMount(){
 	    this.setState({isLoading: true});
-		console.log(this.state.isLoading);
 	    let that=this;
 		request
 		.get('http://localhost:3001/')
@@ -243,7 +240,6 @@ export default class Home extends React.Component {
 		.send()
 	    .end(function(err, res){
 	    	if(res.status === 200){
-			  console.log(res);
 		      if(res.body.length != 0){
 		      	const dataArray = [];
 		      	for(var i=0; i<res.body.length; i++){
@@ -298,7 +294,8 @@ export default class Home extends React.Component {
 								editEntry: this.editEntry,
 								entryEventHandler: this.entryEventHandler,
 								changeEditState: this.changeEditState,
-								readOnlyEntry: this.state.readOnlyEntry
+								readOnlyEntry: this.state.readOnlyEntry,
+								isLoading: this.state.isLoading
 							};
 			const propsHeader = {title: 'RUMIN', pageName: 'Home'};
 			return  (
@@ -315,11 +312,6 @@ export default class Home extends React.Component {
 					<MobileJournalDisplay {...propsJournal}/>
 					<MobileFooterHome />	
 				</MediaQuery>
-				{this.state.isLoading && (
-					<div className="loading">
-						<Spinner name="ball-spin-fade-loader" color="white"/>
-					</div>
-					)}
 			</div>
 			)
 		}

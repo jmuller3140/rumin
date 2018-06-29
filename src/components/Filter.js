@@ -13,7 +13,6 @@ import './Filter.css';
 export default class Filter extends React.Component{
 	constructor(props){
 		super(props);
-		console.log(this.props);
 
 	}
 

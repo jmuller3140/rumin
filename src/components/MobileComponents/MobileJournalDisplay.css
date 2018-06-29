@@ -66,3 +66,15 @@
 	width:100%;
 
 }
+
+.mobile-loading{
+	width:100%;
+	position:relative;
+	height:500px;
+	float:left;
+	z-index:500;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	background: white;
+}

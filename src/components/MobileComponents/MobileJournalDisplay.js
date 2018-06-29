@@ -2,6 +2,7 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
+import Spinner from 'react-spinkit';
 
 import MobileColumn from './MobileColumn';
 
@@ -55,10 +56,15 @@ export default class MobileJournalDisplay extends React.Component{
 		const dateMap = this.sort(this.props.entries);
 		return (
 			<div>
-	
-					<div id='mobile-journalEntry-container'>
+					{this.props.isLoading && (
+						<div className="mobile-loading">
+							<Spinner name="ball-spin-fade-loader" color="black"/>
+						</div>
+					)}
+					{!this.props.isLoading && (<div id='mobile-journalEntry-container'>
 							{dateMap}
 					</div> 
+					)}
 
 				{this.props.visible && (
 						<div className='mobile-journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>

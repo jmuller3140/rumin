@@ -2,6 +2,7 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
+import Spinner from 'react-spinkit';
 
 import Column from './Column';
 
@@ -51,15 +52,21 @@ export default class JournalDisplay extends React.Component{
 	}
 
 	render(){
-
+		console.log(this.props.isLoading);
 		const dateMap = this.sort(this.props.entries);
 		return (
 			<div>
-				<div className='journalEntry-container'>
+				{this.props.isLoading && (
+						<div className="loading">
+							<Spinner name="ball-spin-fade-loader" color="black"/>
+						</div>
+					)}
+				{!this.props.isLoading && (<div className='journalEntry-container'>
 					<div className='journalEntry-wrapper'>
 						{dateMap}
 					</div>
 				</div> 
+				)}
 
 				{this.props.visible && (
 						<div className='journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>
