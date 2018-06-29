@@ -6,15 +6,17 @@ import './MobileHeaderHome.css'
 
 
 export default class MobileHeaderHome extends React.Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
+		this.title = this.props.title;
 	}
 
 
 	render(){
+		console.log(this.title);
 		return(
 			<div className="mobile-header-container">
-					<p className="mobile-title">Rumin</p>
+					<p className="mobile-title">{this.title}</p>
 			</div>)
 	}
 

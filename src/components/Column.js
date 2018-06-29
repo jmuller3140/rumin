@@ -12,7 +12,6 @@ export default class Column extends React.Component{
 
 	render(){
 		const {id, dateString, sampleText, columnSection, editorState} = this.props;
-		console.log(id);
 		this.onClick = this.props.onClick;
 		return (
 			<CSSTransition in={true} timeout={1000} classNames="journal" appear={true}>

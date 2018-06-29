@@ -21,12 +21,11 @@ export default class Header extends React.Component {
 
 	onClickLogoutHandler(e){
 		localStorage.clear();
-		window.location.reload();
 	}
 
 	componentDidMount(){
 	if(this.state.pageName === "Login"){
-		let props = { pageName: 'R u m i n' };
+		let props = { pageName: 'Rumin' };
 		this.setState({htmlInjection: <HeaderLogin pageName='R u m i n'/> });
 	}
 	else if(this.state.pageName === "Entry"){

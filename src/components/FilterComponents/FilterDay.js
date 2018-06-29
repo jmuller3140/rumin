@@ -13,7 +13,7 @@ export default class FilterDay extends React.Component{
 		const {onChange, onChangeDay} = this.props;
 		return(
 			<div className='filterDay-contents'>
-				<input className='filterDay-input' value={onChangeDay} id='onChangeDay' onChange={(e)=> onChange(e)} type='number' />
+				<input className='filterDay-input' min="1" max="31" value={onChangeDay} id='onChangeDay' onChange={(e)=> onChange(e)} type='number' />
 			</div>
 			)
 	}

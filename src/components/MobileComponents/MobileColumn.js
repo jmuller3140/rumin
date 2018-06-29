@@ -13,7 +13,6 @@ export default class MobileColumn extends React.Component{
 		const {id, dateString, columnSection, editorState} = this.props;
 		let {sampleText} = this.props;
 		let smallerText = "";
-		console.log(sampleText.length);
 		if(sampleText.length > 100){
 			const index = sampleText.indexOf(" ", 100);
 			smallerText = sampleText.slice(0,index);

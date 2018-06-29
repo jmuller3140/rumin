@@ -15,19 +15,19 @@ import './index.css';
 const authenticate = () => {
   const token = localStorage.getItem('token');
   if (!token ) {
-    return false;
+    return "logout";
   }
     try {
       const {exp} = jwt.decode(token);
 
      if(exp < new Date().getTime() / 1000) {
-       return false;
+       return "expire";
     }
   } catch (e) {
-    return false;
+    return "error";
   }
 
-  return true;
+  return "authenticated";
 };
 ///////////////////////////////////////////////////////////
 /* authRoutes returns the routes dynamically generated */
@@ -57,7 +57,7 @@ const registerComponent = () => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 const buildRoutes = () => {
 	const isAuth = authenticate();
-		if(isAuth)
+		if(isAuth === "authenticated")
 		{
 			  return (
               <Switch>

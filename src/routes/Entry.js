@@ -12,6 +12,7 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
 import MobileFilter from '../components/MobileComponents/MobileFilter';
 import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
 import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
+import MobileFooterEntry from '../components/MobileComponents/MobileFooterComponents/MobileFooterEntry';
 
 export default class Entry extends React.Component{
 	constructor(props){
@@ -66,6 +67,7 @@ export default class Entry extends React.Component{
 		const isAuth = this.props.authenticate();
 		if(isAuth)
 		{
+			const propsHeader = {title: 'Entry'};
 			return (
 			<div>
 				<MediaQuery minWidth={896}>
@@ -75,9 +77,9 @@ export default class Entry extends React.Component{
 					<ToastContainer toastClassName="toast"  />
 				</MediaQuery>
 				<MediaQuery maxWidth={895}>
-					<MobileHeaderHome />
+					<MobileHeaderHome {...propsHeader}/>
 					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
-					<MobileFooterHome />	
+					<MobileFooterEntry save={this.saveEventHandler}/>	
 					<ToastContainer toastClassName="toast"  />
 				</MediaQuery>
 			</div>

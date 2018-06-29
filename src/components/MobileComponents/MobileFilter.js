@@ -32,10 +32,10 @@ export default class MobileFilter extends React.Component{
 		return(
 		<div>
 			<div className='mobile-filter-container'>
-						<input className='mobile-filterDay' min="1" value={onChangeDay} id="onChangeDay" onChange={onChange} type='number' />
+						<input className='mobile-filterDay' min="1" max="31" value={onChangeDay} id="onChangeDay" onChange={onChange} type='number' />
 					    <Select name="form-field-name" className="mobile-filterMonth" value={this.props.onChangeMonth} onChange={(e)=>this.props.onChangeMonthHandler(e)}
 					    options={options}/>
-						<input className='mobile-filterYear' value={onChangeYear} id="onChangeYear" onChange={onChange} type='number' />
+						<input className='mobile-filterYear' min="0" value={onChangeYear} id="onChangeYear" onChange={onChange} type='number' />
 				</div>
 		</div>
 			)

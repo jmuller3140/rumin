@@ -35,3 +35,8 @@ background: rgb(250,250,250);
     padding:50px;
     font-family: Typewriter;
 }
+@media (max-width: 895px){
+  .diaryField{
+width:90%;
+}
+}

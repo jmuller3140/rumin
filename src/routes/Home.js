@@ -4,6 +4,7 @@ import {CSSTransition} from 'react-transition-group';
 import request from 'superagent';
 import {Redirect} from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import Spinner from 'react-spinkit';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
@@ -13,6 +14,8 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
 import MobileFilter from '../components/MobileComponents/MobileFilter';
 import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
 import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
+
+import './Home.css';
 
 export default class Home extends React.Component {
 	constructor(props){
@@ -39,7 +42,7 @@ export default class Home extends React.Component {
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.changeEditState = this.changeEditState.bind(this);
 
-		this.state = {onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
+		this.state = {isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
 					entries: [{id:1, dateTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}], 
 					highlightedEditorState: EditorState.createEmpty(), highlightedEditorCopy: EditorState.createEmpty(), highlightedId: "", visible: false, readOnlyEntry: true };
 
@@ -229,30 +232,36 @@ export default class Home extends React.Component {
 /* calls post request to retrieve user journal entries */
 /////////////////////////////////////////////////////////
 	componentDidMount(){
-	    fetch('http://localhost:3001/', {
-	     method: 'get',
-	     headers: {'Content-Type':'application/json',
-	                'Accept': 'application/json',
-	            	'authorization': 'bearer ' + localStorage.getItem('token')}
-	    })
-	    .then(res => res.json())
-	    .then(data => {
-	      if(data.length != 0){
-	      	const dataArray = [];
-	      	for(var i=0; i<data.length; i++){
-	      		const { dateString, id, dateTime } = data[i];
-	      		const content = convertFromRaw(JSON.parse(data[i].entry));
-	      		let sampleText = content.getPlainText('').slice(0, 500);
-	      		if(sampleText.length === 500){
-	      			sampleText = sampleText + '......';
-	      		}
-	      		const convertedEntry = EditorState.createWithContent(content);
-	      		const instance = { dateTime: dateTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
-	      		dataArray.push(instance);
+	    this.setState({isLoading: true});
+		console.log(this.state.isLoading);
+	    let that=this;
+		request
+		.get('http://localhost:3001/')
+		.set('Content-Type', 'application/json')
+		.set('Accept', 'application/json')
+		.set('authorization', 'bearer ' + localStorage.getItem('token'))
+		.send()
+	    .end(function(err, res){
+	    	if(res.status === 200){
+			  console.log(res);
+		      if(res.body.length != 0){
+		      	const dataArray = [];
+		      	for(var i=0; i<res.body.length; i++){
+		      		const { dateString, id, dateTime } = res.body[i];
+		      		const content = convertFromRaw(JSON.parse(res.body[i].entry));
+		      		let sampleText = content.getPlainText('').slice(0, 500);
+		      		if(sampleText.length === 500){
+		      			sampleText = sampleText + '......';
+		      		}
+		      		const convertedEntry = EditorState.createWithContent(content);
+		      		const instance = { dateTime: dateTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
+		      		dataArray.push(instance);
 
-	      	}
-	      	this.setState({entries: dataArray});
-	      	console.log(this.state.entries);
+		      	}
+		      	that.setState({entries: dataArray});
+		      	that.setState({isLoading: false});
+		  		console.log(that.state.isLoading);
+		    	}
 	      }
 
 	})
@@ -260,7 +269,7 @@ export default class Home extends React.Component {
 
 	render(){
 		const isAuth = this.props.authenticate();
-		if(isAuth)
+		if(isAuth === "authenticated")
 		{
 			const propsFilter = {onChange: this.onChange, 
 			 					  onChangeMonthHandler: this.onChangeMonthHandler, 
@@ -291,31 +300,35 @@ export default class Home extends React.Component {
 								changeEditState: this.changeEditState,
 								readOnlyEntry: this.state.readOnlyEntry
 							};
+			const propsHeader = {title: 'RUMIN', pageName: 'Home'};
 			return  (
 			<div>
 				<MediaQuery minWidth={896}>
-					<Header pageName='Home' />
+					<Header {...propsHeader} />
 					<ProfileImage/>
 					<Filter {...propsFilter} />
 					<JournalDisplay {...propsJournal} />
 				</MediaQuery>
 				<MediaQuery maxWidth={895}>
-					<MobileHeaderHome />
+					<MobileHeaderHome {...propsHeader}/>
 					<MobileFilter {...propsFilter}/>
 					<MobileJournalDisplay {...propsJournal}/>
 					<MobileFooterHome />	
 				</MediaQuery>
+				{this.state.isLoading && (
+					<div className="loading">
+						<Spinner name="ball-spin-fade-loader" color="white"/>
+					</div>
+					)}
 			</div>
 			)
 		}
-		else {
+		else if(isAuth === "expire"){
 			var url = window.location.href;    
-			if (url.indexOf('?') > -1){
-			   url += '&msg=logout';
-			}else{
-			   url += '?msg=logout';
-			}
+			url += '?msg=expire';
 			window.location.href = url;
+		} else if(isAuth === "logout"){
+			window.location.reload();
 		}
 	}
 };
