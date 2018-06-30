@@ -21,6 +21,7 @@ export default class Entry extends React.Component{
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.saveEventHandler = this.saveEventHandler.bind(this);
 		this.addNotification = this.addNotification.bind(this);
+		this.onClickLogoutHandler = this.onClickLogoutHandler.bind(this);
 	}
 //////////////////////////////////////////////////////
 /* event handler that updates the editor state text */
@@ -35,6 +36,10 @@ export default class Entry extends React.Component{
       position: toast.POSITION.BOTTOM_RIGHT,
       hideProgressBar: true
   });
+	onClickLogoutHandler = (e) => {
+		localStorage.clear();
+		window.location.reload();
+	}
 //////////////////////////////////////////////////////
 /* save handler that saves entry to db */
 //////////////////////////////////////////////////////
@@ -67,11 +72,11 @@ export default class Entry extends React.Component{
 		const isAuth = this.props.authenticate();
 		if(isAuth)
 		{
-			const propsHeader = {title: 'Entry'};
+			const propsHeader = {title: 'Entry', logout: this.onClickLogoutHandler, showSettings: true, save: this.saveEventHandler};
 			return (
 			<div>
 				<MediaQuery minWidth={896}>
-					<Header pageName='Entry' save={this.saveEventHandler}/>
+					<Header pageName='Entry' {...propsHeader}/>
 					<ProfileImage />
 					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
 					<ToastContainer toastClassName="toast"  />

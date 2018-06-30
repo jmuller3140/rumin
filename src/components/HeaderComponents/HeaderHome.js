@@ -14,6 +14,7 @@ export default class HeaderHome extends React.Component{
 		}
 	}
 	render(){
+		console.log(this.props.logout);
 		return (
 			<header>
 				<div className="navbar-container">

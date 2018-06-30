@@ -3,9 +3,12 @@ import jwtDecode from 'jwt-decode';
 import request from 'superagent';
 import queryString from 'query-string';
 import { ToastContainer, toast } from 'react-toastify';
+import MediaQuery from 'react-responsive';
 
 import LoginComponent from '../components/LoginComponent';
 import Header from '../components/Header';
+import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
+import MobileLoginComponent from '../components/MobileComponents/MobileLoginComponent';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css'
@@ -97,12 +100,22 @@ import './Login.css'
 
 
    render(){
+   		const propsHeader = {title: 'RUMIN', pageName: 'Login', showSettings: false};
      return (
-        <div>
-          <Header pageName="Login" />
-          <LoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
-          <ToastContainer toastClassName="toast"  />
-        </div>
+     	<div>
+		<MediaQuery minWidth={896}>
+	        <div>
+	          <Header pageName="Login" />
+	          <LoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
+	          <ToastContainer toastClassName="toast"  />
+	        </div>
+		</MediaQuery>
+		<MediaQuery maxWidth={895}>
+			  <MobileHeaderHome {...propsHeader}/>
+	          <MobileLoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
+	          <ToastContainer toastClassName="toast"  />
+		</MediaQuery>
+		</div>
         )    	
       
    }

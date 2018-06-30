@@ -3,6 +3,8 @@ import jwtDecode from 'jwt-decode';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
 import Spinner from 'react-spinkit';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {faBook} from '@fortawesome/fontawesome-free-solid/';
 
 import Column from './Column';
 
@@ -42,17 +44,15 @@ export default class JournalDisplay extends React.Component{
 		);
 
 		return (
-			<div>
 				<div className='column-display'>
 					 {columnDisplay}
 				</div>
-			</div>
 			)
 		}
 	}
 
 	render(){
-		console.log(this.props.isLoading);
+		console.log(this.props.entries);
 		const dateMap = this.sort(this.props.entries);
 		return (
 			<div>
@@ -61,11 +61,18 @@ export default class JournalDisplay extends React.Component{
 							<Spinner name="ball-spin-fade-loader" color="black"/>
 						</div>
 					)}
-				{!this.props.isLoading && (<div className='journalEntry-container'>
-					<div className='journalEntry-wrapper'>
-						{dateMap}
+				{this.props.isJournalEmpty && (
+					<div id="emptyJournal">
+						<div id="emptyJournal-wrapper">
+							<p>Your journal is empty! To make an entry navigate to the entry screen. Happy journaling!</p><br/>
+							<p><FontAwesomeIcon className='book-icon' icon={faBook} /></p>
+						</div>
 					</div>
-				</div> 
+					)}
+				{(!this.props.isLoading && !this.props.isJournalEmpty) && (
+					<div className='journalEntry-container'>
+						{dateMap}
+					</div> 
 				)}
 
 				{this.props.visible && (

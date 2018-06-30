@@ -2,9 +2,12 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import request from 'superagent';
 import { ToastContainer, toast } from 'react-toastify';
+import MediaQuery from 'react-responsive';
 
 import RegisterComponent from '../components/RegisterComponent';
+import MobileRegisterComponent from '../components/MobileComponents/MobileRegisterComponent';
 import Header from '../components/Header';
+import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
 
  export default class Register extends React.Component{
   constructor(){
@@ -94,12 +97,21 @@ import Header from '../components/Header';
    render(){
     const props = {handleSubmit: this.handleSubmit, onChange: this.onChange, email: this.state.email, password: this.state.password, passwordConfirm: this.state.passwordConfirm, 
       firstName: this.state.firstName, lastName: this.state.lastName};
+      const propsHeader = {title: 'Register', pageName: 'Register', showSettings: false};
      return (
       <div>
-        {this.state.redirect && <Redirect to='/?msg=success' />}
-        <Header pageName="Register"/>
-        <RegisterComponent {...props}/>
-        <ToastContainer toastClassName="toast"  />
+        <MediaQuery minWidth={896}>
+          {this.state.redirect && <Redirect to='/?msg=success' />}
+          <Header pageName="Register"/>
+          <RegisterComponent {...props}/>
+          <ToastContainer toastClassName="toast"  />
+        </MediaQuery>
+        <MediaQuery maxWidth={895}>
+          {this.state.redirect && <Redirect to='/?msg=success' />}
+          <MobileHeaderHome title="Register"/>
+          <MobileRegisterComponent {...props}/>
+          <ToastContainer toastClassName="toast"  />
+        </MediaQuery>
       </div>
       )
    }

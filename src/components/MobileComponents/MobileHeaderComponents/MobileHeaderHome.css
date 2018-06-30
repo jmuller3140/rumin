@@ -3,10 +3,16 @@
 	float:left;
 	width:100%;
 	display: flex;
-	justify-content: center;
-	background-color: rgba(245, 222, 179, 1);
+	justify-content: flex-end;
+	align-items: center;
+	background-color: rgba(242,236,223,1);
 }
 .mobile-title{
 	font-size: 15pt;
 	font-family: 'moonLight';
+}
+.mobile-cog-icon{
+	margin-left:4.75em;
+	margin-right:1em;
+	color:grey;
 }

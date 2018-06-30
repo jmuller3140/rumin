@@ -1,0 +1,75 @@
+.register-container{
+width:100%;
+position:relative;
+display: flex;
+justify-content: center;
+align-items: center;
+float:left;
+}
+#mobile-registerForm{
+width:100%;
+margin:0 auto;
+position:relative;
+padding:1em;
+}
+#mobile-registerForm ul{
+	text-align: center;
+}
+#mobile-registerForm li{
+margin:1em;
+display:inline;
+text-decoration:none;
+color:grey;
+font-size:1em;
+letter-spacing:.1em;
+text-align: center;
+}
+#mobile-registerForm label{
+	margin-right:10%;
+	font-family: "Raleway-Regular";
+}
+.textbox-register{
+	width:80%;
+	padding:.5em;
+	display:block;
+	border-radius: 5px;
+	border-width: thin;
+	letter-spacing:.1em;
+	font-family: "Raleway-Light";
+	background-color: rgb(230,236,240);
+}
+#mobile-submitRegister{
+	width:85%;
+	padding:.5em;
+	display: block;
+	border-radius: 5px;
+	border-width: thin;
+	letter-spacing:.1em;
+	font-family: "Raleway-Light";
+	background-color: rgb(221,221,221);
+	padding-right:1em;
+	border: 1px solid grey;
+}
+#register-or{
+	width:85%;
+	padding:.5em;
+	display: block;
+	border-radius: 5px;
+	border-width: thin;
+	letter-spacing:.1em;
+	font-family: "Raleway-Light";
+	padding-right:1em;
+}
+#mobile-loginLink{
+	width:75%;
+	padding:.5em;
+	display: block;
+	border-radius: 5px;
+	border-width: thin;
+	letter-spacing:.1em;
+	color:black;
+	border: 1px solid grey;
+	font-family: "Raleway-Light";
+	background-color: rgb(221,221,221);
+	padding-right:1em;
+}

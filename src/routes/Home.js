@@ -18,6 +18,8 @@ import MobileFooterHome from '../components/MobileComponents/MobileFooterCompone
 export default class Home extends React.Component {
 	constructor(props){
 		super(props);
+
+		this.onClickLogoutHandler = this.onClickLogoutHandler.bind(this);
 		// Variables for the filtering boxes
 		this.onChange = this.onChange.bind(this);
 		this.onChangeMonthHandler = this.onChangeMonthHandler.bind(this);
@@ -40,7 +42,7 @@ export default class Home extends React.Component {
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.changeEditState = this.changeEditState.bind(this);
 
-		this.state = {isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
+		this.state = {isJournalEmpty: false, isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
 					entries: [{id:1, dateTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}], 
 					highlightedEditorState: EditorState.createEmpty(), highlightedEditorCopy: EditorState.createEmpty(), highlightedId: "", visible: false, readOnlyEntry: true };
 
@@ -62,6 +64,13 @@ export default class Home extends React.Component {
 		      onChangeMonth: event.value
 		    });
 		  };
+	///////////////////////////////////////////////////
+	/*clears local storage*/
+	//////////////////////////////////////////////////		  
+	onClickLogoutHandler = (e) => {
+		localStorage.clear();
+		window.location.reload();
+	}
 	//////////////////////////////////////////
 	/*handler for changing values of month suggestions based on typing*/
 	//////////////////////////////////////////
@@ -241,6 +250,7 @@ export default class Home extends React.Component {
 	    .end(function(err, res){
 	    	if(res.status === 200){
 		      if(res.body.length != 0){
+		      	console.log(res.body);
 		      	const dataArray = [];
 		      	for(var i=0; i<res.body.length; i++){
 		      		const { dateString, id, dateTime } = res.body[i];
@@ -252,11 +262,13 @@ export default class Home extends React.Component {
 		      		const convertedEntry = EditorState.createWithContent(content);
 		      		const instance = { dateTime: dateTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
 		      		dataArray.push(instance);
-
 		      	}
 		      	that.setState({entries: dataArray});
 		      	that.setState({isLoading: false});
-		  		console.log(that.state.isLoading);
+		    	}
+		    	else if(res.body.length === 0){
+		    		that.setState({isJournalEmpty: true});
+		    		that.setState({isLoading: false});
 		    	}
 	      }
 
@@ -295,9 +307,10 @@ export default class Home extends React.Component {
 								entryEventHandler: this.entryEventHandler,
 								changeEditState: this.changeEditState,
 								readOnlyEntry: this.state.readOnlyEntry,
-								isLoading: this.state.isLoading
+								isLoading: this.state.isLoading,
+								isJournalEmpty: this.state.isJournalEmpty
 							};
-			const propsHeader = {title: 'RUMIN', pageName: 'Home'};
+			const propsHeader = {title: 'RUMIN', pageName: 'Home', logout: this.onClickLogoutHandler, showSettings: true};
 			return  (
 			<div>
 				<MediaQuery minWidth={896}>

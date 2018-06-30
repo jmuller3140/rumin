@@ -21,6 +21,7 @@
 .journalEntry-date{
 	float:left;
 	width:100%;
+	padding-top:.5em;
 	font-size:12pt;
 	text-align: center;
 	font-family:MoonLight;

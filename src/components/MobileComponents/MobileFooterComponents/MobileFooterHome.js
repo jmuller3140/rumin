@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faHome, faPencilAlt} from '@fortawesome/fontawesome-free-solid/';
+import {faHome, faPencilAlt, faCog} from '@fortawesome/fontawesome-free-solid/';
 
 import './MobileFooterHome.css';
 
@@ -9,15 +9,16 @@ import './MobileFooterHome.css';
 
 
 export default class MobileFooterHome extends React.Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 	}
-
 	render(){
 		return(
-			<div className="mobile-footer-container">
-					<Link  className='link' to='/'><FontAwesomeIcon className='mobile-home-icon' icon={faHome} /></Link>				
-					<Link  className='link' to='Entry'><FontAwesomeIcon className='mobile-pencil-icon' icon={faPencilAlt} /></Link>
+			<div>
+				<div className="mobile-footer-container">
+						<Link  className='link' to='/'><FontAwesomeIcon className='mobile-home-icon' icon={faHome} /></Link>				
+						<Link  className='link' to='Entry'><FontAwesomeIcon className='mobile-pencil-icon' icon={faPencilAlt} /></Link>
+				</div>
 			</div>)
 	}
 }

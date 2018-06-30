@@ -114,3 +114,35 @@
 	justify-content: center;
 	background: white;
 }
+#emptyJournal{
+	width:100%;
+	position:relative;
+	height:300px;
+	float:left;
+	z-index:500;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	background: white;
+}
+#emptyJournal-wrapper{
+	width:80%;
+	height:300px;
+	margin:0 auto;
+	margin-top: 100px;
+	background: rgb(249,248,244);
+	text-align: center;
+	box-shadow: 0 4px 20px -2px gray;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+}
+#emptyJournal p{
+	font-family: typeWriter;
+	font-size:12pt;
+}
+.book-icon{
+	font-size:100pt;
+	color:grey;
+}
