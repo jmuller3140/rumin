@@ -16,8 +16,8 @@ export default class MobileFooterHome extends React.Component {
 		return(
 			<div>
 				<div className="mobile-footer-container">
-						<Link  className='link' to='/'><FontAwesomeIcon className='mobile-home-icon' icon={faHome} /></Link>				
-						<Link  className='link' to='Entry'><FontAwesomeIcon className='mobile-pencil-icon' icon={faPencilAlt} /></Link>
+						<Link  className='link-footer' to='/'><FontAwesomeIcon className='mobile-home-icon' icon={faHome} /><p>Home</p></Link>				
+						<Link  className='link-footer' to='Entry'><FontAwesomeIcon className='mobile-pencil-icon' icon={faPencilAlt} /><p>Entry</p></Link>
 				</div>
 			</div>)
 	}

@@ -22,7 +22,7 @@ export default class MobileColumn extends React.Component{
 		const className= 'mobile-journalEntry-content-container';
 		this.onClick = this.props.onClick;
 		return (
-			<CSSTransition in={true} timeout={1000} classNames="journal" appear={true}>
+			<CSSTransition in={true} timeout={1000} classNames="mobile-journal" appear={true}>
 				<div className='mobile-journalEntry-content' key={id} onClick={(e) => this.onClick(editorState, id, e)} > 
 					<div className={className}>
 						<div className='mobile-journalEntry-date'>

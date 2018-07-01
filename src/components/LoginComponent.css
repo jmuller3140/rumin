@@ -32,7 +32,7 @@ float:left;
 .login-content-wrapper{
 /*float:left;*/
 width:100%;
-padding-top:10%;
+padding-top: 10%;
 z-index:500;
 background: url('../pic/login_1600.png') no-repeat center fixed;
 height:605px;
@@ -46,6 +46,12 @@ position:relative;
 padding:1em;
 background:rgba(255, 255, 255, 0.8);
 border-radius: 5px;
+}
+#quote{
+ width:30%;
+ margin:0 auto;
+ margin-bottom:2em;
+ background-color: white;
 }
 
 @media (max-width: 1200px){

@@ -1,10 +1,12 @@
 .mobile-journalEntry-content{
-	width:50%;
+	width:90%;
 	position:relative;
 	cursor: pointer;
 	float:left;
 	background: white;
-	box-shadow: 0px 0px 2px 2px gray;
+	margin:0 auto;
+	margin-top: 1em;
+	box-shadow: 0px 0px 1px 1px gray;
 }
 .mobile-journalEntry-content-container{
 	width:100%;
@@ -31,4 +33,13 @@
 }
 .mobile-journalEntry-text p{
 	vertical-align: middle;
+}
+.mobile-journal-appear {
+  opacity: 0.01;
+  transform: translateY(30%);
+}
+.mobile-journal-appear-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all .75s ease-in;
 }

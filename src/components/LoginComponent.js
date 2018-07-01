@@ -29,3 +29,6 @@ import './LoginComponent.css';
       );
    }
  }
+
+
+  // <p id="quote">"Writing is like a 'lust,' or like 'scratching an itch.' Writing comes as a result of a very strong impulse, and when it does come, I, for one, must get it out.</p>

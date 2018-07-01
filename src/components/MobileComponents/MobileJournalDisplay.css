@@ -3,6 +3,7 @@
 	position:relative;
 	display:flex;
 	justify-content: flex-start;
+	flex-direction: column;
 	float:left;
 	padding-bottom: 50%;
 	background: rgb(249,248,244);
@@ -66,7 +67,6 @@
 	width:100%;
 
 }
-
 .mobile-loading{
 	width:100%;
 	position:relative;
@@ -77,4 +77,41 @@
 	align-items: center;
 	justify-content: center;
 	background: white;
+}
+#mobile-emptyJournal{
+	width:100%;
+	position:relative;
+	height:300px;
+	float:left;
+	z-index:500;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	background: white;
+}
+#mobile-emptyJournal-wrapper{
+	width:80%;
+	height:300px;
+	margin:0 auto;
+	margin-top: 100px;
+	background: rgb(249,248,244);
+	text-align: center;
+	box-shadow: 0 4px 20px -2px gray;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+}
+#mobile-emptyJournal-wrapper p{
+	padding:2em;
+	padding-bottom:0;
+	margin-bottom:0;
+	font-family: Typewriter;
+	font-size:10pt;
+}
+.mobile-book-icon{
+	padding-top:0em;
+	margin-top:0;
+	font-size:75pt;
+	color:grey;
 }

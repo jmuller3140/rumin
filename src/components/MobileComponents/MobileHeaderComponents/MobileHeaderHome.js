@@ -23,7 +23,7 @@ export default class MobileHeaderHome extends React.Component{
 			<div>
 				<div className="mobile-header-container">
 						<p className="mobile-title">{this.title}</p>
-						{this.props.showSettings &&(<p onClick={(e)=> this.toggleState(e, true)}><FontAwesomeIcon className='mobile-cog-icon' icon={faCog} /></p>)}
+						{this.props.showSettings &&(<p className='mobile-cog-icon' onClick={(e)=> this.toggleState(e, true)}><FontAwesomeIcon icon={faCog} /></p>)}
 				</div>
 				{this.state.showCogMenu &&(
 					<div className="mobile-settings-container">

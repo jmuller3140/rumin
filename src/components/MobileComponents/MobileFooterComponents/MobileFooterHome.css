@@ -11,7 +11,7 @@
 }
 .mobile-home-icon, .mobile-pencil-icon, .mobile-cog-icon{
 	font-size:18pt;
-
+	margin-bottom:.1em;
 }
 .mobile-settings-container{
 	position:fixed;
@@ -36,4 +36,23 @@
 	color:grey;
 	letter-spacing: .1em;
 	font-family: Raleway-Regular;
+}
+.link-footer{
+	text-decoration: none;
+}
+.link-footer:visited{
+	color:grey;
+}
+.link-footer:hover{
+	color: rgb(197,168,118);
+	text-decoration:underline;
+}
+.link-footer:active {
+    color:rgb(197,168,118) ;
+}
+.link-footer p{
+	margin:0;
+	padding:0;
+	margin-left:-.5em;
+	font-family: Raleway-Light;
 }

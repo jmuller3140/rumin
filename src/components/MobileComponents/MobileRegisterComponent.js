@@ -23,7 +23,7 @@ import './MobileRegisterComponent.css';
                        <li><input name='firstName' className="textbox-register" placeholder='First Name' onChange={e => this.onChange(e)} value={this.props.firstName}/></li>
                        <li><input name='lastName' className="textbox-register" placeholder='Last Name' onChange={e => this.onChange(e)} value={this.props.lastName}/></li>
                        <li><input type='submit' id="mobile-submitRegister" value='Submit' /></li>
-                       <li><p id="register-or">--- or ---</p></li>
+                       <li><p id="register-or">or</p></li>
                        <li><Link  className='link' id="mobile-loginLink"to='/'>Login</Link></li>
                    </ul>
                   </form>

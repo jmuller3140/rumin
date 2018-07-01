@@ -23,25 +23,23 @@ export default class HeaderEntry extends React.Component{
 		return (
 			<header>
 				<div className="navbar-container">
-							<ul className='userName'>
-								<li>{this.state.firstName} {this.state.lastName}</li>
-							</ul>
-							<ul className='logout'>
-								<li><Link className='link' to='/' onClick={this.props.logout}>Logout</Link></li>
-							</ul>
-							<ul className='title-entry'>
-								<li>{this.props.pageName}</li>
-							</ul>
-							<ul className='toolbar'>
-								<li><FontAwesomeIcon data-tip={true} data-for='infoTooltip' icon={faSave} className='save' onClick={this.props.save}/></li>
+							<div className='nav-first-item'>
+								<p>{this.state.firstName} {this.state.lastName}</p>
+								<Link className='link' to='/' onClick={this.props.logout}>Logout</Link>
+							</div>
+							<div className='nav-second-item'>
+								<p>{this.props.pageName}</p>
+							</div>
+							<div className="nav-third-item">
+								<FontAwesomeIcon data-tip={true} data-for='infoTooltip' icon={faSave} className='save' onClick={this.props.save}/>
 						   		<ReactTooltip id='infoTooltip' place="bottom" type='dark' effect='solid'>
 				  					<p style={style}>{title}</p>
-								</ReactTooltip>
-							</ul>
-							<ul className='navigation'>
-								<li><Link  className='link' to='/'>Home</Link></li>
-								<li><Link  className='link' to='Entry'>Entry</Link></li> 
-							</ul>
+								</ReactTooltip>							
+							</div>
+							<div className='nav-fourth-item'>
+								<Link className='link' to='/'><p>Home</p></Link>
+								<Link  className='link' to='Entry'>Entry</Link>
+							</div>
 				</div>
 			</header>			
 		);
@@ -49,6 +47,10 @@ export default class HeaderEntry extends React.Component{
 }
 
 //					<div className="navbar-content-wrapper">
+
+
+
+
 
 
 

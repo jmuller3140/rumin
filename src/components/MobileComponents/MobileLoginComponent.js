@@ -20,7 +20,7 @@ import './MobileLoginComponent.css';
                        <li><input className="textbox-login" name='email' placeholder='Email' onChange={e => this.onChange(e)} value={this.props.email}/></li>
                        <li><input className="textbox-login" name='password' type='password' placeholder='Password' onChange={e => this.onChange(e)} value={this.props.password}/></li>
                        <li><input className='submit' id="mobile-submitLogin" type='submit' value='Submit' /></li>
-                       <li><p id="login-or">--- or ---</p></li>
+                       <li><p id="login-or">or </p></li>
                        <li><Link  className='link' id="mobile-registrationLink"to='Register'>Registration</Link></li>
                    </ul>
                   </form>

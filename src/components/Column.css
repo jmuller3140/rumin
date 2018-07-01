@@ -37,3 +37,12 @@
 .journalEntry-text p{
 	vertical-align: middle;
 }
+.journal-appear {
+  opacity: 0.01;
+  transform: translateX(-10%);
+}
+.journal-appear-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all .75s ease-in;
+}

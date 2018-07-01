@@ -7,21 +7,22 @@ import './Header.css';
 export default class HeaderLogin extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			pageName: this.props.pageName
-		}
 	}
 	render(){
 		return (
 			<header>
 				<div className="navbar-container">
-							<ul className='title-login'>
-								<li>{this.state.pageName}</li>
-							</ul>
-							<ul className='navigation'>
-								<li><Link className='link' to='/'>Login</Link></li>
-								<li><Link  className='link' to='Register'>Registration</Link></li> 
-							</ul>
+							<div className='nav-first-item'>
+							</div>
+							<div className='nav-second-item'>
+								<p>{this.props.pageName}</p>
+							</div>
+							<div className="nav-third-item">
+							</div>
+							<div className='nav-fourth-item'>
+								<Link className='link' to='/'><p>Login</p></Link>
+								<Link  className='link' to='Register'><p>Registration</p></Link>
+							</div>
 				</div>
 			</header>
 			);

@@ -20,6 +20,7 @@
 	letter-spacing: .1em;
 	z-index: 2000;
 	display: inline-flex;
+	border-left:none;
 
 }
 .filterYear-input:focus{
@@ -27,8 +28,8 @@
 }
 #info-icon{
 	position:absolute;
-	left:500px;
-	top:-10px;
+	left:100px;
+	top:-20px;
 	color:white;
 	z-index:10000;
 	font-size: 12pt;

@@ -3,6 +3,8 @@ import jwtDecode from 'jwt-decode';
 import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
 import {CSSTransition} from 'react-transition-group';
 import Spinner from 'react-spinkit';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {faBook} from '@fortawesome/fontawesome-free-solid/';
 
 import MobileColumn from './MobileColumn';
 
@@ -61,10 +63,19 @@ export default class MobileJournalDisplay extends React.Component{
 							<Spinner name="ball-spin-fade-loader" color="black"/>
 						</div>
 					)}
-					{!this.props.isLoading && (<div id='mobile-journalEntry-container'>
-							{dateMap}
-					</div> 
+				{this.props.isJournalEmpty && (
+					<div id="mobile-emptyJournal">
+						<div id="mobile-emptyJournal-wrapper">
+							<p>Your journal is empty! To make an entry navigate to the entry screen. Happy journaling!</p>
+							<p><FontAwesomeIcon className='mobile-book-icon' icon={faBook} /></p>
+						</div>
+					</div>
 					)}
+					{(!this.props.isLoading && !this.props.isJournalEmpty) && (
+					<div className='mobile-journalEntry-container'>
+						{dateMap}
+					</div> 
+				)}
 
 				{this.props.visible && (
 						<div className='mobile-journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>

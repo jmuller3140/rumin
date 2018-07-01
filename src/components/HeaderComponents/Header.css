@@ -5,7 +5,8 @@ position:fixed;
 display: inline-flex;
 flex-direction: row;
 color:grey;
-justify-content: flex-start;
+justify-content: center;
+align-items: center;
 font-family: 'moonLight';
 left:0;
 top:0;
@@ -13,60 +14,43 @@ background-color:rgba(255, 255, 255, .8);
 z-index:2000;
 box-shadow: 0 4px 2px -2px gray;
 }
-
-.title, .title-entry, .navigation, .toolbar, .userName, .title-login{
-	display: inline-flex;
+.nav-first-item{
+	position:fixed;
+	top:0em;
+	left:3%;
+	width:25%;
+	display:inline-flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 13pt;
 }
-
-.title, .title-entry, .title-login{
-	flex: 0 1 auto;
-	list-style: none;
-	text-align: center;
-	margin: auto;
-	padding-left:18%;
+.logout{
+	margin-left:10em;
 }
-.title-entry{
-	padding-left: 18.5%;
+.nav-second-item{
+	margin-right:1em;
+	font-size: 21pt;
 }
-.title-login{
-	padding-left: 32.5%;
-	display: inline;
-	flex: 0 3 auto;
-
-}
-.title li, .title-entry li ,.title-login li{
-	font-size:20pt;
-
-}
-
-.navigation{
-	flex: 0 1 auto;
+.nav-third-item{
+	position:fixed;
+	left:60%;
+	top:1em%;
 	width:15%;
-	margin: auto;
-	display: inline-flex;
-	justify-content: space-evenly;
-	list-style: none;
-	margin-right:2%;
+	display:inline-flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 13pt;
 }
-.navigation li{
-	display: inline-flex;
+.nav-fourth-item{
+	position:fixed;
+	left:80%;
+	top:0%;
+	width:15%;
+	display:inline-flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 13pt;
 }
-
-.toolbar{
-	list-style: none;
-	flex: 0 1 auto;
-	margin: auto;
-	margin-right:2%;
-	display: inline;
-	text-align: right;
-}
-.userName, .logout{
-	list-style: none;
-	margin-left: 2%;
-	display: inline;
-	text-align: center;
-}
-
 .save, .arrow-up{
 	font-size:20pt;
 	cursor: pointer;

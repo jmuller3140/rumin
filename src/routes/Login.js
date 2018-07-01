@@ -92,7 +92,7 @@ import './Login.css'
    	console.log(window.location.search);
    	const params = queryString.parse(window.location.search);
    	if(params.msg === "success"){
-   		this.addNotification("Your registration wass successful", toast.TYPE.SUCCESS);
+   		this.addNotification("Your registration was successful", toast.TYPE.SUCCESS);
    	}else if(params.msg === "expire"){
    		this.addNotification("Your session expired. Please login again.", toast.TYPE.INFO);
    	}
