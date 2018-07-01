@@ -8,8 +8,9 @@
 	background-color: rgba(242,236,223,1);
 }
 .mobile-title{
-	margin-right:1.25em;
 	font-size: 15pt;
+	letter-spacing: .1em;
+	color:grey;
 	font-family: 'moonLight';
 }
 .mobile-cog-icon{

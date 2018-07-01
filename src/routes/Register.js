@@ -108,7 +108,7 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
         </MediaQuery>
         <MediaQuery maxWidth={895}>
           {this.state.redirect && <Redirect to='/?msg=success' />}
-          <MobileHeaderHome title="Register"/>
+          <MobileHeaderHome title="RUMIN"/>
           <MobileRegisterComponent {...props}/>
           <ToastContainer toastClassName="toast"  />
         </MediaQuery>
