@@ -71,7 +71,7 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
 
           let that=this;
           request
-        .post('http://localhost:3001/register')
+        .post(process.env.REACT_APP_URL_REGISTER)
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .send( data )

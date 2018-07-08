@@ -179,7 +179,7 @@ export default class Home extends React.Component {
 
 	    let that=this;
 	    request
-		.post('http://localhost:3001/')
+		.post(process.env.REACT_APP_URL_HOME)
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))
@@ -201,7 +201,7 @@ export default class Home extends React.Component {
 
 	    let that=this;
 	    request
-		.put('http://localhost:3001/')
+		.put(process.env.REACT_APP_URL_HOME)
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))
@@ -242,7 +242,7 @@ export default class Home extends React.Component {
 	    this.setState({isLoading: true});
 	    let that=this;
 		request
-		.get('http://localhost:3001/')
+		.get(process.env.REACT_APP_URL_HOME)
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))

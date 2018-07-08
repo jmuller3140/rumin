@@ -1,7 +1,7 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import request from 'superagent';
-import queryString from 'query-string';
+import qs from 'qs';
 import { ToastContainer, toast } from 'react-toastify';
 import MediaQuery from 'react-responsive';
 
@@ -23,6 +23,13 @@ import './Login.css'
  		this.onChange = this.onChange;
  		this.handleSubmit = this.handleSubmit;
  		this.checkEmail = this.checkEmail;
+ 		this.getUrlParams = this.getUrlParams;
+ 	}
+
+ 	getUrlParams = () => {
+ 		let url = window.location.search;
+		url = url.replace("?", '');
+		return url;
  	}
 ///////////////////////////////////////////
 /* onChange event handler to change text */
@@ -60,12 +67,13 @@ import './Login.css'
         if(emailConfirmation){
 
 		    request
-		    .post('http://localhost:3001/login')
+		    .post(process.env.REACT_APP_URL_LOGIN)
 		    .set('Content-Type','application/json')
 		    .set('Accept', 'application/json')
 		    .send( data )
 		    .end((err, res) => {
 		    if(err){
+		    		console.log(process.env.REACT_APP_URL_LOGIN);
 		    		console.log(err);
 		    } else {
 		      console.log(res.status);
@@ -89,8 +97,7 @@ import './Login.css'
 /* loginHandler to log someone in */
 ////////////////////////////////////
 	componentDidMount(){
-   	console.log(window.location.search);
-   	const params = queryString.parse(window.location.search);
+   	const params = qs.parse(qs.parse(this.getUrlParams()));
    	if(params.msg === "success"){
    		this.addNotification("Your registration was successful", toast.TYPE.SUCCESS);
    	}else if(params.msg === "expire"){

@@ -2,7 +2,6 @@
 width:100%;
 position:relative;
 float:left;
-background-image: url('../pic/header_banner.png');
 /*box-shadow: 0 4px 2px -2px gray;*/
 z-index:500;
 }

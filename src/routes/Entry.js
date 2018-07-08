@@ -52,7 +52,7 @@ export default class Entry extends React.Component{
 
 	    let that=this;
 	    request
-		.post('http://localhost:3001/save')
+		.post(process.env.REACT_APP_URL_SAVE)
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))

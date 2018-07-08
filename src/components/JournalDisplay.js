@@ -4,7 +4,7 @@ import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'd
 import {CSSTransition} from 'react-transition-group';
 import Spinner from 'react-spinkit';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faBook} from '@fortawesome/fontawesome-free-solid/';
+import {faBook, faTimes} from '@fortawesome/fontawesome-free-solid/';
 
 import Column from './Column';
 
@@ -82,6 +82,9 @@ export default class JournalDisplay extends React.Component{
 																				this.props.onClickHighlighted(false, e);  
 																				this.changeDeleteState(e);
 																			}}>Delete</button>
+								<button className='btn-exit-popup' onClick={(e) => {
+																				this.props.onClickHighlighted(true, e);  
+																			}}><FontAwesomeIcon className='mobile-times-icon' icon={faTimes} /></button>
 								{this.props.readOnlyEntry && (<button className='btn-edit-entry' onClick={(e) => {
 																				this.props.onClickHighlighted(false, e);  
 																				this.props.changeEditState(false, e);
@@ -91,12 +94,7 @@ export default class JournalDisplay extends React.Component{
 																				this.props.onClickHighlighted(false, e);  
 																				this.props.editEntry(this.props.highlightedEditorState, this.props.highlightedId, e);
 																			}}>Save</button>
-								)}
-								{!this.props.readOnlyEntry && (<button className='btn-cancel-entry' onClick={(e) => {
-																				this.props.onClickHighlighted(false, e);  
-																				this.props.changeEditState(true, e);
-																			}}>Cancel</button>
-								)}								
+								)}							
 								<div className='journal-highlighted' onClick={(e) => this.props.onClickHighlighted(false, e)} >
 									<Editor editorState={this.props.highlightedEditorState} readOnly={this.props.readOnlyEntry} onChange={this.props.entryEventHandler}/>
 								</div>
@@ -121,3 +119,9 @@ export default class JournalDisplay extends React.Component{
 	}
 
 }
+
+								// {!this.props.readOnlyEntry && (<button className='btn-cancel-entry' onClick={(e) => {
+								// 												this.props.onClickHighlighted(false, e);  
+								// 												this.props.changeEditState(true, e);
+								// 											}}>Cancel</button>
+								// )}	
