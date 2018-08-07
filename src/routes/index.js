@@ -62,7 +62,7 @@ const buildRoutes = () => {
 			  return (
               <Switch>
                 <Route exact path="/" render={homeComponent} />
-                <Route exact path="/entry" render={entryComponent} />
+                <Route path="/entry" render={entryComponent} />
               </Switch>
 				);
 		}	
