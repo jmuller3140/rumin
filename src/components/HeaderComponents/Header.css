@@ -59,6 +59,7 @@ box-shadow: 0 4px 2px -2px gray;
 
 .link{
 	text-decoration: none;
+	color:grey;
 }
 .link:visited{
 	color:grey;
