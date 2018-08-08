@@ -76,7 +76,6 @@ import './Login.css'
 		    		console.log(process.env.REACT_APP_URL_LOGIN);
 		    		console.log(err);
 		    } else {
-		      console.log(res.status);
 		      const { token } = res.body;
 		      const decodedToken = jwtDecode(token);
 		      console.log(decodedToken);

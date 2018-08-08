@@ -52,7 +52,6 @@ export default class JournalDisplay extends React.Component{
 	}
 
 	render(){
-		console.log(this.props.entries);
 		const dateMap = this.sort(this.props.entries);
 		return (
 			<div>

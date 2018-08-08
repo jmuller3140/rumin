@@ -27,7 +27,6 @@ export default class Entry extends React.Component{
 /* event handler that updates the editor state text */
 //////////////////////////////////////////////////////
 	entryEventHandler = (editorState) => {
-		console.log(this.state.editorState);
 		this.setState({editorState});
 	}
 
@@ -47,7 +46,6 @@ export default class Entry extends React.Component{
 		const { editorState } = this.state;
 		const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
 
-		console.log(data);
 	    e.preventDefault();
 
 	    let that=this;

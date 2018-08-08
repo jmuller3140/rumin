@@ -250,7 +250,6 @@ export default class Home extends React.Component {
 	    .end(function(err, res){
 	    	if(res.status === 200){
 		      if(res.body.length != 0){
-		      	console.log(res.body);
 		      	const dataArray = [];
 		      	for(var i=0; i<res.body.length; i++){
 		      		const { dateString, id, dateTime } = res.body[i];
