@@ -10,16 +10,9 @@ import FilterYear from './FilterComponents/FilterYear';
 import './Filter.css';
 
 
-export default class Filter extends React.Component{
-	constructor(props){
-		super(props);
+const Filter = (props) =>{
 
-	}
-
-
-	render(){
 		const style={ width:'250px', letterSpacing: '.1em', fontFamily:'garamond'};
-		const props = this.props;
 		const title="Your journal entries dated on or before the specified date will appear. The left box indicates the day, the middle box the month, and the right box indicates the year."
 		return(
 		<div>
@@ -38,5 +31,7 @@ export default class Filter extends React.Component{
 			</MediaQuery>
 		</div>
 			)
-	}
 }
+
+
+export default Filter;

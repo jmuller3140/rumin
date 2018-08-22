@@ -1,9 +1,8 @@
 import React from 'react';
-import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
-import {CSSTransition} from 'react-transition-group';
+import {EditorState, convertFromRaw, convertToRaw} from 'draft-js';
 import request from 'superagent';
-import {Redirect} from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import moment from 'moment';
 
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
@@ -28,7 +27,7 @@ export default class Home extends React.Component {
 		this.renderSuggestion = this.renderSuggestion.bind(this);
 		this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
 		this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-		this.months = [{name: 'january'}, {name: 'february'}, {name: 'march'}, 
+		this.months = [{name: 'january'}, {name: 'february'}, {name: 'march'},
 					{name:'april'},{name:'may'},{name:'june'},{name:'july'},
 					{name:'august'},{name:'september'},{name:'october'},
 					{name: 'november'}, {name:'december'}];
@@ -41,9 +40,10 @@ export default class Home extends React.Component {
 		this.editEntry = this.editEntry.bind(this);
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.changeEditState = this.changeEditState.bind(this);
+		this.getDate = this.getDate.bind(this);
 
-		this.state = {isJournalEmpty: false, isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(), 
-					entries: [{id:1, dateTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}], 
+		this.state = {isJournalEmpty: false, isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(),
+					entries: [{id:1, localTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}],
 					highlightedEditorState: EditorState.createEmpty(), highlightedEditorCopy: EditorState.createEmpty(), highlightedId: "", visible: false, readOnlyEntry: true };
 
 	}
@@ -59,14 +59,13 @@ export default class Home extends React.Component {
 	/*handler for changing value of the month input*/
 	//////////////////////////////////////////////////
 	 onChangeMonthHandler = (event) => {
-	 	console.log(event);
 		    this.setState({
 		      onChangeMonth: event.value
 		    });
 		  };
 	///////////////////////////////////////////////////
 	/*clears local storage*/
-	//////////////////////////////////////////////////		  
+	//////////////////////////////////////////////////
 	onClickLogoutHandler = (e) => {
 		localStorage.clear();
 		window.location.reload();
@@ -109,7 +108,7 @@ export default class Home extends React.Component {
 		    this.setState({
 		      months: []
 		    });
-		  };		
+		  };
 
 /////////////////////////////////////////////////
 /* onClickHandler to highlight full entry text */
@@ -118,7 +117,6 @@ export default class Home extends React.Component {
 		this.setState({visible: true});
 		this.setState({highlightedEditorState: editorState});
 		this.setState({highlightedId: id});
-		console.log(this.state.highlightedId);
 	}
 ///////////////////////////////////
 /* gets rid of popup entery text */
@@ -138,27 +136,27 @@ export default class Home extends React.Component {
 		let len = entries.length;
 		let filterArray = [];
 		for(var i = 0; i<len; i++){
-			let yearIndex = entries[i].dateTime.indexOf('/');
-			let year = parseInt(entries[i].dateTime.slice(0, yearIndex));
+			let yearIndex = entries[i].localTime.indexOf('/');
+			let year = parseInt(entries[i].localTime.slice(0, yearIndex), 10);
 
-			let monthIndex = entries[i].dateTime.indexOf('/', yearIndex + 1);
-			let month = parseInt(entries[i].dateTime.slice(yearIndex + 1, monthIndex));
+			let monthIndex = entries[i].localTime.indexOf('/', yearIndex + 1);
+			let month = parseInt(entries[i].localTime.slice(yearIndex + 1, monthIndex), 10);
 			let monthNames = {january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
         july: 7, august:8, september:9, october:10, november:11, december: 12};
         	let monthValue = monthNames[monthFilter];
 
-			let dayIndex = entries[i].dateTime.indexOf(' ', monthIndex + 1);
-			let day = parseInt(entries[i].dateTime.slice(monthIndex + 1, dayIndex));
+			let dayIndex = entries[i].localTime.indexOf(' ', monthIndex + 1);
+			let day = parseInt(entries[i].localTime.slice(monthIndex + 1, dayIndex), 10);
 
 
 			if(year < yearFilter){
 				filterArray.push(entries[i]);
 			}
-			else if(year == yearFilter){
+			else if(year === yearFilter){
 				if(month < monthValue){
 					filterArray.push(entries[i]);
-				} 
-				else if(month == monthValue){
+				}
+				else if(month === monthValue){
 					if(day <= dayFilter){
 						filterArray.push(entries[i]);
 					}
@@ -174,7 +172,6 @@ export default class Home extends React.Component {
 	deleteEntry(id, e){
 
 		const data = {id: id};
-		console.log(data);
 	    e.preventDefault();
 
 	    let that=this;
@@ -186,7 +183,7 @@ export default class Home extends React.Component {
 		.send( data )
 		.end(function(err, res){
 			that.setState({visible: false});
-			if(res.status == 200){
+			if(res.status === 200){
 				window.location.reload();
 			}
 		});
@@ -197,7 +194,6 @@ export default class Home extends React.Component {
 	editEntry(editorState, id, e){
 		const editorStateConverted = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
 		const data = {id: id, editorStateConverted: editorStateConverted};
-		console.log(data);
 
 	    let that=this;
 	    request
@@ -208,24 +204,35 @@ export default class Home extends React.Component {
 		.send( data )
 		.end(function(err, res){
 			that.setState({visible: false});
-			if(res.status == 200){
-				console.log(res);
+			if(res.status === 200){
 				window.location.reload();
 			}
 		});
 	}
+	 getDate = (dateString) => {
+       const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+
+        const dateArray = dateString.split(" ");
+        const date = dateArray[0].split("/");
+        const year = date[0];
+        const day = date[2];
+        const month = monthNames[parseInt(date[1], 10)-1];
+        const entryDateString = (month + " " + day + " " + year);
+
+    return entryDateString;
+  }
 
 	///////////////////
 	/* edits entry */
 	///////////////////
 
 	entryEventHandler = (highlightedEditorState) => {
-		console.log(this.state.highlightedEditorState);
 		this.setState({highlightedEditorState});
 	}
 	///////////////////
 	/* edits entry */
-	///////////////////	
+	///////////////////
 	changeEditState(cancel, e){
 		if(cancel){
 			this.setState({highlightedEditorState: this.state.highlightedEditorCopy});
@@ -249,17 +256,19 @@ export default class Home extends React.Component {
 		.send()
 	    .end(function(err, res){
 	    	if(res.status === 200){
-		      if(res.body.length != 0){
+		      if(res.body.length !== 0){
 		      	const dataArray = [];
 		      	for(var i=0; i<res.body.length; i++){
-		      		const { dateString, id, dateTime } = res.body[i];
+		      		const { timestamp, id } = res.body[i];
 		      		const content = convertFromRaw(JSON.parse(res.body[i].entry));
 		      		let sampleText = content.getPlainText('').slice(0, 500);
 		      		if(sampleText.length === 500){
 		      			sampleText = sampleText + '......';
 		      		}
 		      		const convertedEntry = EditorState.createWithContent(content);
-		      		const instance = { dateTime: dateTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
+		      		let localTime = moment(timestamp).format('YYYY/MM/DD HH:mm:ss');
+		      		let dateString = that.getDate(localTime);
+		      		const instance = { localTime: localTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
 		      		dataArray.push(instance);
 		      	}
 		      	that.setState({entries: dataArray});
@@ -278,28 +287,28 @@ export default class Home extends React.Component {
 		const isAuth = this.props.authenticate();
 		if(isAuth === "authenticated")
 		{
-			const propsFilter = {onChange: this.onChange, 
-			 					  onChangeMonthHandler: this.onChangeMonthHandler, 
+			const propsFilter = {onChange: this.onChange,
+			 					  onChangeMonthHandler: this.onChangeMonthHandler,
 			 					  months: this.months,
-			 					  onChangeMonth: this.state.onChangeMonth, 
+			 					  onChangeMonth: this.state.onChangeMonth,
 			 					  onChangeDay: this.state.onChangeDay,
 			 					  onChangeYear: this.state.onChangeYear,
 			 					 getSuggestions: this.getSuggestions,
 								 getSuggestionValue: this.getSuggestionValue,
 								 renderSuggestion: this.renderSuggestion,
 								 onSuggestionsClearRequested: this.onSuggestionsClearRequested,
-								 onSuggestionsFetchRequested: this.onSuggestionsFetchRequested, 
+								 onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
 								 currentDate: this.currentDate };
 
 			const {onChangeDay, onChangeMonth, onChangeYear} = this.state;
 			const filteredArray = this.filter(onChangeDay, onChangeMonth, onChangeYear, this.state.entries);
 
-			const propsJournal = {entries: filteredArray, 
-								visible: this.state.visible, 
-								onClickHighlighted: this.onClickHighlighted, 
-								onClickHandler: this.onClickHandler, 
+			const propsJournal = {entries: filteredArray,
+								visible: this.state.visible,
+								onClickHighlighted: this.onClickHighlighted,
+								onClickHandler: this.onClickHandler,
 								highlightedEditorState: this.state.highlightedEditorState,
-								hightlightedEditorCopy: this.state.highlightedEditorCopy, 
+								hightlightedEditorCopy: this.state.highlightedEditorCopy,
 								highlightedId:this.state.highlightedId,
 								deleteEntry: this.deleteEntry,
 								editEntry: this.editEntry,
@@ -322,13 +331,13 @@ export default class Home extends React.Component {
 					<MobileHeaderHome {...propsHeader}/>
 					<MobileFilter {...propsFilter}/>
 					<MobileJournalDisplay {...propsJournal}/>
-					<MobileFooterHome />	
+					<MobileFooterHome />
 				</MediaQuery>
 			</div>
 			)
 		}
 		else if(isAuth === "expire"){
-			var url = window.location.href;    
+			var url = window.location.href;
 			url += '?msg=expire';
 			window.location.href = url;
 		} else if(isAuth === "logout"){

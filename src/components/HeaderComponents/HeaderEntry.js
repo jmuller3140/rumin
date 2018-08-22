@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faSave, faArrowUp} from '@fortawesome/fontawesome-free-solid/';
+import {faSave} from '@fortawesome/fontawesome-free-solid/';
 import ReactTooltip from 'react-tooltip';
 
 
@@ -18,7 +18,6 @@ export default class HeaderEntry extends React.Component{
 	}
 	render(){
 		const style={ width:'75px', letterSpacing: '.1em', fontFamily:'garamond', textAlign:'center'};
-		const props = this.props;
 		const title="Save Entry"
 		return (
 			<header>
@@ -34,14 +33,14 @@ export default class HeaderEntry extends React.Component{
 								<FontAwesomeIcon data-tip={true} data-for='infoTooltip' icon={faSave} className='save' onClick={this.props.save}/>
 						   		<ReactTooltip id='infoTooltip' place="bottom" type='dark' effect='solid'>
 				  					<p style={style}>{title}</p>
-								</ReactTooltip>							
+								</ReactTooltip>
 							</div>
 							<div className='nav-fourth-item'>
 								<Link className='link' to='/'><p>Home</p></Link>
 								<Link  className='link' to='Entry'>Entry</Link>
 							</div>
 				</div>
-			</header>			
+			</header>
 		);
 	}
 }
@@ -60,7 +59,7 @@ export default class HeaderEntry extends React.Component{
 	// 	this.handleFullScreen = this.handleFullScreen;
 	// 	this.state = {fullscreen: false};
 	// }
-	
+
 	// this.toggleScreen = (e) =>{
 	// 	if(this.state.fullscreen == true)
 	// 	{
@@ -69,7 +68,7 @@ export default class HeaderEntry extends React.Component{
 	// 	else{
 	// 		this.setState({fullscreen: true});
 	// 	}
-		
+
 	// }
 
 	// render(){

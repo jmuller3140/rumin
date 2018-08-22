@@ -66,7 +66,7 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
       let emailConfirmation = this.checkEmail(email);
       let passwordConfirmation = this.checkPassword(password);
 
-      if(password == passwordConfirm && passwordConfirmation && emailConfirmation){
+      if(password === passwordConfirm && passwordConfirmation && emailConfirmation){
           const data = {email: email, password: password, firstName: firstName, lastName: lastName};
 
           let that=this;
@@ -76,26 +76,26 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
         .set('Accept', 'application/json')
         .send( data )
         .end(function(err, res){
-          if(res.status == 201){
+          if(res.status === 201){
           that.setState({redirect: true});
         }
           console.log(res);
-        }); 
+        });
 
       }else if(!emailConfirmation){
         this.addNotification("Email incorrectly formatted. Re-enter your email.");
-      }else if(password != passwordConfirm){
+      }else if(password !== passwordConfirm){
         this.setState({password: ''});
         this.setState({passwordConfirm: ''});
         this.addNotification("Password did not match it's confirmation.");
       }else if(!passwordConfirmation){
         this.addNotification("Password must have at least one number, one lowercase and one uppercase letter, at least six characters that are letters, numbers or the underscore.");
       }
- 
+
 }
 
    render(){
-    const props = {handleSubmit: this.handleSubmit, onChange: this.onChange, email: this.state.email, password: this.state.password, passwordConfirm: this.state.passwordConfirm, 
+    const props = {handleSubmit: this.handleSubmit, onChange: this.onChange, email: this.state.email, password: this.state.password, passwordConfirm: this.state.passwordConfirm,
       firstName: this.state.firstName, lastName: this.state.lastName};
       const propsHeader = {title: 'Register', pageName: 'Register', showSettings: false};
      return (

@@ -1,20 +1,22 @@
 import React from 'react';
-import NumericInput from 'react-numeric-input';
+import PropTypes from 'prop-types';
 
 import './FilterDay.css';
 
+const FilterDay = (props) => {
 
-export default class FilterDay extends React.Component{
-	constructor(props){
-		super(props);
+		const {onChange, onChangeDay} = props;
 
-	}
-	render(){
-		const {onChange, onChangeDay} = this.props;
 		return(
 			<div className='filterDay-contents'>
 				<input className='filterDay-input' min="1" max="31" value={onChangeDay} id='onChangeDay' onChange={(e)=> onChange(e)} type='number' />
 			</div>
 			)
-	}
 }
+
+FilterDay.propTypes = {
+	onChange: PropTypes.func,
+	onChangeDay: PropTypes.int
+}
+
+export default FilterDay;

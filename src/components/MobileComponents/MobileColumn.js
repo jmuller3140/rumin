@@ -1,17 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {CSSTransition} from 'react-transition-group';
 
 import './MobileColumn.css';
-export default class MobileColumn extends React.Component{
 
-	constructor(props){
-		super(props);
-		
-	}
+const MobileColumn = (props) => {
 
-	render(){
-		const {id, dateString, columnSection, editorState} = this.props;
-		let {sampleText} = this.props;
+		const {id, sampleText, dateString, editorState} = props;
 		let smallerText = "";
 		if(sampleText.length > 100){
 			const index = sampleText.indexOf(" ", 100);
@@ -23,7 +18,7 @@ export default class MobileColumn extends React.Component{
 		this.onClick = this.props.onClick;
 		return (
 			<CSSTransition in={true} timeout={1000} classNames="mobile-journal" appear={true}>
-				<div className='mobile-journalEntry-content' key={id} onClick={(e) => this.onClick(editorState, id, e)} > 
+				<div className='mobile-journalEntry-content' key={id} onClick={(e) => this.onClick(editorState, id, e)} >
 					<div className={className}>
 						<div className='mobile-journalEntry-date'>
 							{dateString}
@@ -35,8 +30,16 @@ export default class MobileColumn extends React.Component{
 				</div>
 			</CSSTransition>
 		)
-	}
+}
+
+MobileColumn.propTypes = {
+	id: PropTypes.int,
+	sampleText: PropTypes.string,
+	dateString: PropTypes.string,
+	editorState: PropTypes.object
+
 }
 
 
+export default MobileColumn;
 

@@ -1,7 +1,5 @@
 import React from 'react';
-import jwtDecode from 'jwt-decode';
-import {Editor, EditorState, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
-import {CSSTransition} from 'react-transition-group';
+import {Editor } from 'draft-js';
 import Spinner from 'react-spinkit';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faBook, faTimes} from '@fortawesome/fontawesome-free-solid/';
@@ -74,29 +72,29 @@ export default class MobileJournalDisplay extends React.Component{
 					{(!this.props.isLoading && !this.props.isJournalEmpty) && (
 					<div className='mobile-journalEntry-container'>
 						{dateMap}
-					</div> 
+					</div>
 				)}
 
 				{this.props.visible && (
 						<div className='mobile-journal-highlighted-container' onClick={(e) => this.props.onClickHighlighted(true, e)}>
 							<div className='mobile-journal-highlighted-wrapper' onClick={(e) => this.props.onClickHighlighted(false, e)}>
 								<button className='btn-delete-popup' onClick={(e) => {
-																				this.props.onClickHighlighted(false, e);  
+																				this.props.onClickHighlighted(false, e);
 																				this.changeDeleteState(e);
 																			}}>Delete</button>
 								<button className='btn-exit-popup' onClick={(e) => {
-																				this.props.onClickHighlighted(true, e);  
+																				this.props.onClickHighlighted(true, e);
 																			}}><FontAwesomeIcon className='mobile-times-icon' icon={faTimes} /></button>
 								{this.props.readOnlyEntry && (<button className='btn-edit-entry' onClick={(e) => {
-																				this.props.onClickHighlighted(false, e);  
+																				this.props.onClickHighlighted(false, e);
 																				this.props.changeEditState(false, e);
 																			}}>Edit</button>
 								)}
 								{!this.props.readOnlyEntry && (<button className='btn-save-entry' onClick={(e) => {
-																				this.props.onClickHighlighted(false, e);  
+																				this.props.onClickHighlighted(false, e);
 																				this.props.editEntry(this.props.highlightedEditorState, this.props.highlightedId, e);
 																			}}>Save</button>
-								)}							
+								)}
 								<div className='journal-highlighted' onClick={(e) => this.props.onClickHighlighted(false, e)} >
 									<Editor editorState={this.props.highlightedEditorState} readOnly={this.props.readOnlyEntry} onChange={this.props.entryEventHandler}/>
 								</div>
@@ -107,7 +105,7 @@ export default class MobileJournalDisplay extends React.Component{
 					<div className='mobile-deletePopup-container'>
 					<div className='mobile-deletePop-wrapper'>
 						<div className='mobile-deletePopup-content'>
-							<p>Are you sure you want to delete this entry?</p> 
+							<p>Are you sure you want to delete this entry?</p>
 						</div>
 						<div className='delete-btns'>
 							<button className='deletePopup-yes' onClick={(e) => {this.props.deleteEntry( this.props.highlightedId, e); this.changeDeleteState(e);}}>Yes</button>
@@ -124,7 +122,7 @@ export default class MobileJournalDisplay extends React.Component{
 
 
 								// {!this.props.readOnlyEntry && (<button className='btn-cancel-entry' onClick={(e) => {
-								// 												this.props.onClickHighlighted(false, e);  
+								// 												this.props.onClickHighlighted(false, e);
 								// 												this.props.changeEditState(true, e);
 								// 											}}>Cancel</button>
-								// )}	
+								// )}

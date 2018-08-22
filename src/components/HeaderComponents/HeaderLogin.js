@@ -1,21 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import './Header.css';
 
 
-export default class HeaderLogin extends React.Component{
-	constructor(props){
-		super(props);
-	}
-	render(){
+const HeaderLogin = (props) => {
+	const { pageName } = props;
 		return (
 			<header>
 				<div className="navbar-container">
 							<div className='nav-first-item'>
 							</div>
 							<div className='nav-second-item'>
-								<p>{this.props.pageName}</p>
+								<p>{pageName}</p>
 							</div>
 							<div className="nav-third-item">
 							</div>
@@ -26,5 +24,12 @@ export default class HeaderLogin extends React.Component{
 				</div>
 			</header>
 			);
-	}
 }
+
+HeaderLogin.propTypes = {
+	pageName: PropTypes.string
+}
+
+export default HeaderLogin;
+
+

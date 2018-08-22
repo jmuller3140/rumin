@@ -5,13 +5,11 @@ import MediaQuery from 'react-responsive';
 import Header from '../components/Header';
 import ProfileImage from '../components/ProfileImage';
 import Diary from '../components/Diary';
-import {Editor, EditorState, convertToRaw, convertFromRaw, ContentState} from 'draft-js';
+import { EditorState, convertToRaw, ContentState} from 'draft-js';
 import { ToastContainer, toast } from 'react-toastify';
+import moment from 'moment';
 
 import MobileHeaderHome from '../components/MobileComponents/MobileHeaderComponents/MobileHeaderHome';
-import MobileFilter from '../components/MobileComponents/MobileFilter';
-import MobileJournalDisplay from '../components/MobileComponents/MobileJournalDisplay';
-import MobileFooterHome from '../components/MobileComponents/MobileFooterComponents/MobileFooterHome';
 import MobileFooterEntry from '../components/MobileComponents/MobileFooterComponents/MobileFooterEntry';
 
 export default class Entry extends React.Component{
@@ -44,7 +42,8 @@ export default class Entry extends React.Component{
 //////////////////////////////////////////////////////
 	saveEventHandler(e){
 		const { editorState } = this.state;
-		const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+		const date = moment();
+		const data = {data: JSON.stringify(convertToRaw(editorState.getCurrentContent())), date: date };
 
 	    e.preventDefault();
 
@@ -54,7 +53,7 @@ export default class Entry extends React.Component{
 		.set('Content-Type', 'application/json')
 		.set('Accept', 'application/json')
 		.set('authorization', 'bearer ' + localStorage.getItem('token'))
-		.send( {data: data} )
+		.send( data )
 		.end(function(err, res){
 			if(res.status === 200){
 				const clearedEditorState = EditorState.push(editorState, ContentState.createFromText(''));
@@ -63,7 +62,7 @@ export default class Entry extends React.Component{
 			}else{
 				that.addNotification("Your journal entry was not saved. Try again.", toast.TYPE.ERROR);
 			}
-		});  
+		});
 	  }
 
 	render(){
@@ -82,7 +81,7 @@ export default class Entry extends React.Component{
 				<MediaQuery maxWidth={895}>
 					<MobileHeaderHome {...propsHeader}/>
 					<Diary options={this.entryEventHandler} editorState={this.state.editorState}/>
-					<MobileFooterEntry save={this.saveEventHandler}/>	
+					<MobileFooterEntry save={this.saveEventHandler}/>
 					<ToastContainer toastClassName="toast"  />
 				</MediaQuery>
 			</div>
