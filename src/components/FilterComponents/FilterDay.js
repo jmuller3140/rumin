@@ -16,7 +16,7 @@ const FilterDay = (props) => {
 
 FilterDay.propTypes = {
 	onChange: PropTypes.func,
-	onChangeDay: PropTypes.int
+	onChangeDay: PropTypes.number
 }
 
 export default FilterDay;

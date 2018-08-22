@@ -6,11 +6,10 @@ import './Column.css';
 
 const Column = (props) => {
 
-		const {id, dateString, sampleText, editorState} = this.props;
-		this.onClick = this.props.onClick;
+		const {id, dateString, sampleText, editorState, onClick} = props;
 		return (
 			<CSSTransition in={true} timeout={1000} classNames="journal" appear={true}>
-				<div className='journalEntry-content' key={id} onClick={(e) => this.onClick(editorState, id, e)} >
+				<div className='journalEntry-content' key={id} onClick={(e) => onClick(editorState, id, e)} >
 					<div className='journalEntry-content-container'>
 						<div className='journalEntry-date'>
 							{dateString}
@@ -25,10 +24,11 @@ const Column = (props) => {
 }
 
 Column.propTypes = {
-	id: PropTypes.int,
-	dateString: PropTypes.String,
-	sampleText: PropTypes.String,
-	editorState: PropTypes.object
+	id: PropTypes.string,
+	dateString: PropTypes.string,
+	sampleText: PropTypes.string,
+	editorState: PropTypes.object,
+	onClick: PropTypes.func
 }
 
 

@@ -21,7 +21,7 @@ const Diary = (props) =>{
 }
 
 Diary.propTypes = {
-	editorState: PropTypes.int,
+	editorState: PropTypes.object,
 	options: PropTypes.func
 }
 

@@ -9,7 +9,7 @@ import './FilterYear.css';
 
 const FilterYear = (props) => {
 
-		const {onChange, onChangeYear} = this.props;
+		const {onChange, onChangeYear} = props;
 		const style={ width:'250px', letterSpacing: '.1em', fontFamily:'garamond'};
 		const title="Your journal entries dated the day of, or before the date shown will appear. With the left box indicated the day, the middle box the month, and the right box indicates the year."
 		return(
@@ -25,7 +25,7 @@ const FilterYear = (props) => {
 
 FilterYear.propTypes = {
 	onChange: PropTypes.func,
-	onChangeYear: PropTypes.int
+	onChangeYear: PropTypes.number
 }
 
 export default FilterYear;
