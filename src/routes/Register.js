@@ -99,7 +99,7 @@ import MobileHeaderHome from '../components/MobileComponents/MobileHeaderCompone
       firstName: this.state.firstName, lastName: this.state.lastName};
       const propsHeader = {title: 'Register', pageName: 'Register', showSettings: false};
      return (
-      <div>
+      <div style={{height:'100%'}}>
         <MediaQuery minWidth={896}>
           {this.state.redirect && <Redirect to='/?msg=success' />}
           <Header pageName="Register"/>

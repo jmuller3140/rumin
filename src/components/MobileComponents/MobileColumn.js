@@ -6,7 +6,7 @@ import './MobileColumn.css';
 
 const MobileColumn = (props) => {
 
-		const {id, sampleText, dateString, editorState} = props;
+		const {id, sampleText, dateString, editorState, onClick} = props;
 		let smallerText = "";
 		if(sampleText.length > 100){
 			const index = sampleText.indexOf(" ", 100);
@@ -15,10 +15,9 @@ const MobileColumn = (props) => {
 			smallerText = sampleText;
 		}
 		const className= 'mobile-journalEntry-content-container';
-		this.onClick = this.props.onClick;
 		return (
 			<CSSTransition in={true} timeout={1000} classNames="mobile-journal" appear={true}>
-				<div className='mobile-journalEntry-content' key={id} onClick={(e) => this.onClick(editorState, id, e)} >
+				<div className='mobile-journalEntry-content' key={id} onClick={(e) => onClick(editorState, id, e)} >
 					<div className={className}>
 						<div className='mobile-journalEntry-date'>
 							{dateString}

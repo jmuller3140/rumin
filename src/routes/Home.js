@@ -40,7 +40,7 @@ export default class Home extends React.Component {
 		this.editEntry = this.editEntry.bind(this);
 		this.entryEventHandler = this.entryEventHandler.bind(this);
 		this.changeEditState = this.changeEditState.bind(this);
-		this.getDate = this.getDate.bind(this);
+		this.findDate = this.findDate.bind(this);
 
 		this.state = {isJournalEmpty: false, isLoading: false, onChangeDay: this.currentDate.getDate(), onChangeMonth: this.months[this.currentDate.getMonth()].name, months: [], onChangeYear: this.currentDate.getFullYear(),
 					entries: [{id:1, localTime: "", sampleText:"", dateString: "", editorState: EditorState.createEmpty()}],
@@ -209,7 +209,7 @@ export default class Home extends React.Component {
 			}
 		});
 	}
-	 getDate = (dateString) => {
+	 findDate = (dateString) => {
        const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
 
@@ -267,7 +267,7 @@ export default class Home extends React.Component {
 		      		}
 		      		const convertedEntry = EditorState.createWithContent(content);
 		      		let localTime = moment(timestamp).format('YYYY/MM/DD HH:mm:ss');
-		      		let dateString = that.getDate(localTime);
+		      		let dateString = that.findDate(localTime);
 		      		const instance = { localTime: localTime, dateString: dateString, id: id, editorState: convertedEntry, sampleText: sampleText };
 		      		dataArray.push(instance);
 		      	}
@@ -318,7 +318,7 @@ export default class Home extends React.Component {
 								isLoading: this.state.isLoading,
 								isJournalEmpty: this.state.isJournalEmpty
 							};
-			const propsHeader = {title: 'RUMIN', pageName: 'Home', logout: this.onClickLogoutHandler, showSettings: true};
+			const propsHeader = {title: 'RUMIN', pageName: "Home", logout: this.onClickLogoutHandler, showSettings: true};
 			return  (
 			<div>
 				<MediaQuery minWidth={896}>

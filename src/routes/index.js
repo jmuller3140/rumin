@@ -65,7 +65,7 @@ const buildRoutes = () => {
                 <Route path="/entry" render={entryComponent} />
               </Switch>
 				);
-		}	
+		}
 		else
     {
 			  return (
@@ -83,9 +83,7 @@ const buildRoutes = () => {
 ///////////////////////////////////////////////////////////
 const AuthRoutes = () => (
   <Router>
-    <div>
     {buildRoutes()}
-    </div>
   </Router>
 );
 

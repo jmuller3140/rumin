@@ -34,3 +34,9 @@
     font-family: Raleway-Light;
     src: url(../fonts/Raleway-Light.ttf);
 }
+#root {
+    height:100% !important;
+}
+body, html{
+    height:100% !important;
+}

@@ -108,13 +108,11 @@ import './Login.css'
    render(){
    		const propsHeader = {title: 'RUMIN', pageName: 'Login', showSettings: false};
      return (
-     	<div>
+     	<div style={{height:'100%'}}>
 		<MediaQuery minWidth={896}>
-	        <div>
 	          <Header pageName="Login" />
 	          <LoginComponent onChange={this.onChange} handleSubmit={this.handleSubmit} password={this.state.password} email={this.state.email} />
 	          <ToastContainer toastClassName="toast"  />
-	        </div>
 		</MediaQuery>
 		<MediaQuery maxWidth={895}>
 			  <MobileHeaderHome {...propsHeader}/>
@@ -122,7 +120,7 @@ import './Login.css'
 	          <ToastContainer toastClassName="toast"  />
 		</MediaQuery>
 		</div>
-        )    	
-      
+        )
+
    }
  }

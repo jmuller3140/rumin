@@ -12,7 +12,7 @@ const HeaderLogin = (props) => {
 				<div className="navbar-container">
 							<div className='nav-first-item'>
 							</div>
-							<div className='nav-second-item'>
+							<div className='nav-second-item' style={{marginLeft:'1.25em'}}>
 								<p>{pageName}</p>
 							</div>
 							<div className="nav-third-item">
